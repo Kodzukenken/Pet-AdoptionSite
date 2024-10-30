@@ -10,6 +10,7 @@
 
 # production
 /build
+/Pet-AdoptionSite
 
 # misc
 .DS_Store
