@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
-import "./styles/navbar.css";
-import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
+import "../styles/navbar.css";
+// import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
+
+const logo ="/assets/logo.png";
 
 const Navbar = () => {
     // State to manage menu visibility
