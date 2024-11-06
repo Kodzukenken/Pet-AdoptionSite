@@ -10,7 +10,6 @@ const Navbar = () => {
             <NavLink to="/" className="nav__logo">
               Pawsitively
             </NavLink>
-     
             <div
               className={"nav__menu"}
               id="nav-menu"
@@ -60,7 +59,6 @@ const Navbar = () => {
                 <IoClose />
               </div>
             </div>
-     
             <div className="nav__toggle" id="nav-toggle">
               <IoMenu />
             </div>
@@ -68,5 +66,4 @@ const Navbar = () => {
         </header>
       );
      };
-     
      export default Navbar;
