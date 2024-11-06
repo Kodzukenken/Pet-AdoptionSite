@@ -5,9 +5,8 @@ import Navbar from './components/navbar';
 import Home from './pages/home';
 import About from './pages/about';
 import Adopt from './pages/adoption-system';
-import Blog from './components/blog';
+import Blog from './pages/blog';
 import Services from './pages/services';
-
 
 function App() {
   return (
