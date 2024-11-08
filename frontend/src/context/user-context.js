@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const 
+    // const 
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
@@ -18,9 +18,17 @@ export const UserProvider = ({ children }) => {
             token: token
         }
 
+        fetchProfileData(data);
     }, []);
 
     useEffect(() => {
-        const userId = lo
-    })
+        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+        
+        if(userId && token) {
+            setIsLoggedIn(true);
+        }else {
+            setIsLoggedIn(false);
+        }
+    });
 }
