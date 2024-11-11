@@ -28,6 +28,40 @@
   color: #61dafb;
 }
 
+.container {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 1rem; 
+}
+
+/* global.css or App.css */
+
+/* Base font size */
+body {
+  font-size: 16px;
+}
+
+/* Typography */
+h1 {
+  font-size: 2rem; /* Adjust for desktop */
+}
+
+p {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+      font-size: 2.5rem;
+  }
+  
+  p {
+      font-size: 1.1rem;
+  }
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +70,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* Prevent horizontal scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+

@@ -1,0 +1,116 @@
+/* home.css */
+
+/* home.css */
+
+.home {
+    width: 100%; /* Use 100% instead of 100vw */
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden; /* Prevent overflow */
+    background-color: white;
+    margin: 0;
+}
+
+.home__container {
+    background-color: #d5efb3; /* Green background color */
+    width: 100%;
+    max-width: 1200px; /* Limit the max width */
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px; /* Optional */
+}
+
+
+/* Content styling */
+.home__content {
+    max-width: 500px;
+}
+
+.home__title {
+    font-size: 3rem;
+    color: #2a5298;
+    margin-bottom: 1rem;
+}
+
+.home__title span {
+    color: #51a5ff;
+}
+
+.home__description {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.home__button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+/* Image styling */
+.home__images {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.home__image {
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.home__image.large {
+    width: 300px;
+    height: 300px;
+}
+
+.home__image.medium {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    top: -50px;
+}
+
+.home__image.small {
+    width: 100px;
+    height: 100px;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5; /* Optional: adds transparency */
+}
+
+.circle--large {
+    width: 150px;
+    height: 150px;
+    background-color: #51a5ff; /* Blue color */
+    top: 20%;
+    left: -50px;
+}
+
+.circle--medium {
+    width: 100px;
+    height: 100px;
+    background-color: #ffdd57; /* Yellow color */
+    top: 60%;
+    left: 10%;
+}
+
+.circle--small {
+    width: 50px;
+    height: 50px;
+    background-color: #ff7575; /* Red color */
+    top: 40%;
+    right: -30px;
+}
