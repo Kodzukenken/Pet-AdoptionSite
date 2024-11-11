@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "../styles/navbar.css";
-import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
-
-// const logo ="/assets/logo.png";
+// import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
+import logo from "../assets/logo.png"; // Adjust the path as needed
 
 const Navbar = () => {
     // State to manage menu visibility
@@ -18,6 +17,7 @@ const Navbar = () => {
             <nav className="nav container">
                 <NavLink to="/" className="nav__logo">
                     Pawsitively
+                    <img src={logo} alt="Logo" className="logo" /> {/* Logo image */}
                 </NavLink>
                 <div
                     className={`nav__menu ${isMenuOpen ? "show-menu" : ""}`}
