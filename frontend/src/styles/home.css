@@ -4,7 +4,6 @@
 
 .home {
     width: 100%; /* Use 100% instead of 100vw */
-    padding: 2rem 0;
     display: flex;
     justify-content: center;
     overflow-x: hidden; /* Prevent overflow */
@@ -13,30 +12,35 @@
 }
 
 .home__container {
-    background-color: #d5efb3; /* Green background color */
+    background-color: #c4e788; /* Green background color */
     width: 100%;
-    max-width: 1200px; /* Limit the max width */
+    height: 42rem;
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 20px; /* Optional */
+    margin-top: 0;
+    margin-right: 0;
 }
 
 
 /* Content styling */
-.home__content {
+/* .home__content {
     max-width: 500px;
-}
+} */
 
 .home__title {
     font-size: 3rem;
-    color: #2a5298;
-    margin-bottom: 1rem;
+    color: #20ade9;
+    /* margin-bottom: 1rem; */
+    margin-bottom: 0;
 }
 
-.home__title span {
-    color: #51a5ff;
+.home__title2 {
+    font-size: 3rem;
+    color: #20ade9;
+    margin-bottom: 1rem;
+    margin-top: 0;
 }
 
 .home__description {
@@ -49,10 +53,14 @@
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     color: white;
-    background-color: #007bff;
+    background-color:#20ade9;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 2rem;
     cursor: pointer;
+}
+
+.home__content {
+    margin-left: 10rem;
 }
 
 /* Image styling */
@@ -63,13 +71,18 @@
 }
 
 .home__image {
-    border-radius: 50%;
+    /* border-radius: 50%; */
     object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
 }
 
-.home__image.large {
-    width: 300px;
+.home__image.background {
+    width: 60rem;
+    margin-right: 7rem;
+}
+
+/* .home__image.large {
+    width: 400px;
     height: 300px;
 }
 
@@ -83,7 +96,7 @@
 .home__image.small {
     width: 100px;
     height: 100px;
-}
+} */
 
 .circle {
     position: absolute;
@@ -103,7 +116,7 @@
     width: 100px;
     height: 100px;
     background-color: #ffdd57; /* Yellow color */
-    top: 60%;
+    top: 80%;
     left: 10%;
 }
 
@@ -112,5 +125,5 @@
     height: 50px;
     background-color: #ff7575; /* Red color */
     top: 40%;
-    right: -30px;
+    left: 40%;
 }
