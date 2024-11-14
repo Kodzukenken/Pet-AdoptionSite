@@ -1,50 +1,56 @@
 import React from "react";
-import logo from "../assets/logo.png"; // Adjust the path if needed
-import "../styles/footer.css";
+import logo from "../assets/logoTransparent.png";
+import "../styles/footer.css"; // Make sure this path matches your CSS file
 
 export default function Footer() {
     return (
-        <footer className="bg-primary-3 w-full py-8 px-8 text-primary-1 font-bold text-center sm:text-left">
-            <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-                <img src={logo} alt="Logo" className="w-32 mb-4 sm:mb-0" />
-
-                <div className="flex flex-col sm:flex-row sm:gap-x-8 text-xs md:text-sm lg:text-base">
-                    <p>Pawsitively</p>
-                </div>
+        <footer className="footer">
+            <div className="footer__logo-section">
+                <img src={logo} alt="Logo" className="footer__logo" />
+                <p className="footer__title">Pawsitively</p>
             </div>
 
-            <div className="footer-sections grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="footer__sections">
                 {/* About Section */}
-                <div>
-                    <h3 className="text-lg text-primary-1 font-semibold mb-2">About Us</h3>
-                    <p className="text-sm">
+                {/* <div>
+                    <h3 className="footer__heading">About Us</h3>
+                    <p>
                         Your trusted platform for pet adoption. We connect loving homes with animals in need,
                         helping them find a safe and caring place.
                     </p>
-                </div>
+                </div> */}
 
                 {/* Quick Links Section */}
-                <div>
-                    <h3 className="text-lg text-primary-1 font-semibold mb-2">Quick Links</h3>
-                    <ul className="text-sm">
-                        <li><a href="/about" className="hover:text-white">About Us</a></li>
-                        <li><a href="/adopt" className="hover:text-white">Adopt a Pet</a></li>
-                        <li><a href="/shelters" className="hover:text-white">Find Shelters</a></li>
-                        <li><a href="/contact" className="hover:text-white">Contact</a></li>
-                        <li><a href="/faq" className="hover:text-white">FAQ</a></li>
+                <div className="footer__quicklink">
+                    <h3 className="footer__heading">Quick Links</h3>
+                    <ul className="footer__links">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/adopt">Adopt a Pet</a></li>
+                        <li><a href="/shelters">Find Shelters</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/faq">FAQ</a></li>
                     </ul>
                 </div>
 
                 {/* Contact Section */}
-                <div>
-                    <h3 className="text-lg text-primary-1 font-semibold mb-2">Contact Us</h3>
-                    <p className="text-sm">Email: contact@petadoption.com</p>
-                    <p className="text-sm">Phone: +123-456-7890</p>
-                    <p className="text-sm">Address: 123 Pet Lane, Animal City, AC 12345</p>
+                <div className="footer__contact">
+                    <h3 className="footer__heading">Contact Us</h3>
+                    <p>Email: contact@petadoption.com</p>
+                    <p>Phone: +123-456-7890</p>
+                    <p>Address: 123 Pet Lane, Animal City, AC 12345</p>
+                </div>
+
+                {/* Sign-Up Card */}
+                <div className="footer__signup-card">
+                    <h3 className="footer__heading">Stay Updated!</h3>
+                    <p>Join our newsletter for pet adoption updates and tips.</p>
+                    <form className="signup-form">
+                        <button type="submit" className="signup-button">Sign Up</button>
+                    </form>
                 </div>
             </div>
 
-            <div className="mt-8 text-sm">
+            <div className="footer__bottom-text">
                 &copy; 2024 Pet Adoption Platform | Designed with ❤️
             </div>
         </footer>
