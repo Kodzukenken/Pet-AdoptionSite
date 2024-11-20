@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "../styles/navbar.css";
+import {
+    HOME,
+    USERDASH,
+    SEARCH,
+} from "../constants/routes";
 // import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
 import logo from "../assets/logo.png"; // Adjust the path as needed
 
-const Navbar = () => {
+export default function Navbar (currentPath) {
     // State to manage menu visibility
+    const { isLoggedIn, removeUser} = useUser();
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // Function to toggle menu visibility
@@ -52,9 +59,41 @@ const Navbar = () => {
                 <div className="nav__toggle" id="nav-toggle" onClick={toggleMenu}>
                     <IoMenu />
                 </div>
+
+            {/* user functions */}
+                <div className="user">
+                    {isLoggedIn ? (
+                        <>
+                        <Link
+                        to={USERDASH}
+                        className={`flex items-center text-white ${
+                            currentPath === USERDASH
+                            ? "font-semibold text-yellow-500"
+                            : "hover:text-yellow-500"
+                        }`}
+                        >
+                        <AccountCircleIcon className="mr-2" />
+                        My profile
+                        </Link>
+                        <button
+                        onClick={() => {
+                            removeUser();
+                            navigate(LANDING_PAGE);
+                        }}
+                        className="text-white hover:text-gradient transition duration-300 cursor-pointer"
+                        >
+                        Logout
+                        </button>
+                    </>
+                    ) : (
+                        <Link 
+                            to={LANDING_PAGE}
+                            className="">
+                            Login
+                        </Link>
+                    )}
+                </div>
             </nav>
         </header>
     );
 };
-
-export default Navbar;

@@ -54,10 +54,10 @@
   text-decoration: none;
 }
 
-.contact__footer {
+/* .contact__footer {
   /* padding: 1rem 1rem 1rem 1rem; */
-  gap: 2rem;
-}
+  /* gap: 2rem; */
+*/
 
 .footer__signup-card {
   margin-right: 3rem;
