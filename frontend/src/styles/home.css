@@ -31,6 +31,7 @@
 
 .home__title {
     font-size: 3rem;
+    font-weight: bold;
     color: #20ade9;
     /* margin-bottom: 1rem; */
     margin-bottom: 0;
@@ -38,6 +39,7 @@
 
 .home__title2 {
     font-size: 3rem;
+    font-weight: bold;
     color: #20ade9;
     margin-bottom: 1rem;
     margin-top: 0;
@@ -116,7 +118,7 @@
     width: 100px;
     height: 100px;
     background-color: #ffdd57; /* Yellow color */
-    top: 80%;
+    top: 70%;
     left: 10%;
 }
 
@@ -125,5 +127,21 @@
     height: 50px;
     background-color: #ff7575; /* Red color */
     top: 40%;
-    left: 40%;
+    left: 45%;
+}
+
+/* Video Section */
+.home__video-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 600px;
+}
+
+
+.home__video {
+    width: 100%;
+    height: auto;
 }
