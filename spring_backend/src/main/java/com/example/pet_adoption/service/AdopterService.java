@@ -1,7 +1,7 @@
 package com.example.pet_adoption.service;
 
 import com.example.pet_adoption.model.Adopter;
-import com.example.pet_adoption.repository.AdoptersRepository;
+import com.example.pet_adoption.repository.AdopterRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class AdopterService {
 
     @Autowired
-    private AdoptersRepository adoptersRepository;
+    private AdopterRepository adoptersRepository;
 
     public List<Adopter> getAllAdopters() {
         return adoptersRepository.findAll();

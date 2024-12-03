@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AdoptersRepository extends MongoRepository<Adopter, ObjectId> {
+public interface AdopterRepository extends MongoRepository<Adopter, ObjectId> {
 
     // Find an adopter by their name
     List<Adopter> findByName(String name);
@@ -22,8 +22,8 @@ public interface AdoptersRepository extends MongoRepository<Adopter, ObjectId> {
     List<Adopter> findAdoptersOlderThan(java.util.Date dob);
 
     // Update the address of an adopter by ID
-    @Query(value = "{ '_id' : ?0 }", update = "{ '$set' : { 'address' : ?1 } }")
-    void updateAddressById(ObjectId id, String newAddress);
+    // @Query(value = "{ '_id' : ?0 }", update = "{ '$set' : { 'address' : ?1 } }")
+    // void updateAddressById(ObjectId id, String newAddress);
 
     // Delete adopters by name
     void deleteByName(String name);
