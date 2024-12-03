@@ -4,22 +4,23 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "adoption_requests")  // MongoDB collection name
+import java.util.Date;
+
+@Document(collection = "adoptionRequests")  // MongoDB collection name
 public class AdoptionRequest {
     @Id
     private ObjectId id;
-    private ObjectId adopter_id;
-    private String shelter;
-    private int pet_type;
-    private String pet_name;
+    private ObjectId adopterId;
+    private ObjectId petId;
+    private ObjectId shelterId;
+    private Date date;
     private int status;
 
-    public AdoptionRequest(ObjectId id, ObjectId adopter_id, String shelter, int pet_type, String pet_name, int status) {
+    public AdoptionRequest(ObjectId id, ObjectId adopterId, ObjectId shelterId, ObjectId petId, int status) {
         this.id = id;
-        this.shelter = shelter;
-        this.adopter_id = adopter_id;
-        this.pet_type = pet_type;
-        this.pet_name = pet_name;
+        this.shelterId = shelterId;
+        this.adopterId = adopterId;
+        this.petId = petId;
         this.status = status;
     }
 
@@ -31,28 +32,12 @@ public class AdoptionRequest {
         this.id = id;
     }
 
-    public String getShelter() {
-        return shelter;
+    public ObjectId getShelterId() {
+        return shelterId;
     }
 
-    public void setShelter(String shelter) {
-        this.shelter = shelter;
-    }
-
-    public int getPetType() {
-        return pet_type;
-    }
-
-    public void setPetType(int pet_type) {
-        this.pet_type = pet_type;
-    }
-
-    public String getPetName() {
-        return pet_name;
-    }
-
-    public void setPetName(String pet_name) {
-        this.pet_name = pet_name;
+    public void setShelter(ObjectId shelterId) {
+        this.shelterId = shelterId;
     }
 
     public int getStatus() {
@@ -64,10 +49,26 @@ public class AdoptionRequest {
     }
 
     public ObjectId getAdopterId() {
-        return adopter_id;
+        return adopterId;
     }
 
-    public void setAdopterId(ObjectId adopter_id) {
-        this.adopter_id = adopter_id;
+    public void setAdopterId(ObjectId adopterId) {
+        this.adopterId = adopterId;
+    }
+
+    public ObjectId getPetId() {
+        return petId;
+    }
+
+    public void setPetId(ObjectId adopterId) {
+        this.petId = petId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

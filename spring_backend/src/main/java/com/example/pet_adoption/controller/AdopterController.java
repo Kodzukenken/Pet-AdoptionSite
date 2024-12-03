@@ -34,9 +34,10 @@ public class AdopterController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Adopter> updateAdopter(@PathVariable ObjectId id, @RequestBody Adopter adopters) {
-        Adopter updatedAdopter = adopterService.updateAdopter(id, adopters);
-        return ResponseEntity.ok(updatedAdopter);
+    public ResponseEntity<Adopter> updateAdopter(@PathVariable ObjectId id, @RequestBody String adopters) {
+        adopterService.updateAdopterAddress(id, adopters);
+        Optional<Adopter> adopter = adopterService.getAdopterById(id);
+        return adopter.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

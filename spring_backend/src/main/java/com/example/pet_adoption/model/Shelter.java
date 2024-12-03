@@ -6,24 +6,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "pets")  // MongoDB collection name
+@Document(collection = "shelters")  // MongoDB collection name
 public class Shelter {
     @Id
     private ObjectId id;
     private String city;
+    private String name;
     private String province;
     private String street;
-    private String post_code;
+    private String postCode;
     private String phone;
     private String email;
 
 
-    public Shelter(ObjectId id, String city, String province, String street, String post_code, String phone, String email) {
+    public Shelter(ObjectId id, String city, String province, String street, String postCode, String phone, String email) {
         this.id = id;
         this.city = city;
         this.province = province;
         this.street = street;
-        this.post_code = post_code;
+        this.postCode = postCode;
         this.phone = phone;
         this.email = email;
     }
@@ -60,12 +61,12 @@ public class Shelter {
         this.street = street;
     }
 
-    public String getPost_code() {
-        return post_code;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPost_code(String post_code) {
-        this.post_code = post_code;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public String getEmail() {
@@ -82,6 +83,14 @@ public class Shelter {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

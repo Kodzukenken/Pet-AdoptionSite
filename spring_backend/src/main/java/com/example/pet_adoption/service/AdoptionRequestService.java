@@ -16,7 +16,9 @@ public class AdoptionRequestService {
     private AdoptionRequestRepository adoptionRequestRepository;
 
     public List<AdoptionRequest> getAllRequests() {
+        System.out.println("getAllRequests");
         return adoptionRequestRepository.findAll();
+//        return adoptionRequestRepository.findAll();
     }
 
     public Optional<AdoptionRequest> getRequestById(ObjectId id) {
@@ -24,6 +26,7 @@ public class AdoptionRequestService {
     }
 
     public AdoptionRequest createRequest(AdoptionRequest adoptionRequest) {
+        System.out.println("deleteRequest");
         return adoptionRequestRepository.save(adoptionRequest);
     }
 
@@ -33,6 +36,8 @@ public class AdoptionRequestService {
     }
 
     public void deleteRequest(ObjectId id) {
+        System.out.println("deleteRequest");
+
         adoptionRequestRepository.deleteById(id);
     }
 }

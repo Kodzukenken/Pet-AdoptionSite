@@ -1,10 +1,14 @@
 package com.example.pet_adoption.service;
 
 import com.example.pet_adoption.model.Adopter;
-import com.example.pet_adoption.repository.AdoptersRepository;
+import com.example.pet_adoption.repository.AdopterRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,26 +17,30 @@ import java.util.Optional;
 public class AdopterService {
 
     @Autowired
-    private AdoptersRepository adoptersRepository;
+    private AdopterRepository adopterRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public List<Adopter> getAllAdopters() {
-        return adoptersRepository.findAll();
+        return adopterRepository.findAll();
     }
 
     public Optional<Adopter> getAdopterById(ObjectId id) {
-        return adoptersRepository.findById(id);
+        return adopterRepository.findById(id);
     }
 
     public Adopter createAdopter(Adopter adopter) {
-        return adoptersRepository.save(adopter);
+        return adopterRepository.save(adopter);
     }
 
-    public Adopter updateAdopter(ObjectId id, Adopter adopter) {
-        adopter.setId(id);
-        return adoptersRepository.save(adopter);
+    public void updateAdopterAddress(ObjectId id, String newAddress) {
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = new Update().set("address", newAddress);
+        mongoTemplate.updateFirst(query, update, Adopter.class);
     }
 
     public void deleteAdopter(ObjectId id) {
-        adoptersRepository.deleteById(id);
+        adopterRepository.deleteById(id);
     }
 }
