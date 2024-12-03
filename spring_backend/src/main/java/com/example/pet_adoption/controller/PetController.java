@@ -1,5 +1,6 @@
 package com.example.pet_adoption.controller;
 
+import com.example.pet_adoption.dto.PetDTO;
 import com.example.pet_adoption.model.Pet;
 import com.example.pet_adoption.service.PetService;
 import org.bson.types.ObjectId;
@@ -12,15 +13,15 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/pets")
+@RequestMapping("/api/pets")
 public class PetController {
 
     @Autowired
     private PetService petService;
 
     @GetMapping
-    public ResponseEntity<List<Pet>> getAllPets() {
-        List<Pet> pets = petService.getAllPets();
+    public ResponseEntity<List<PetDTO>> getAllPets() {
+        List<PetDTO> pets = petService.getAllPets();
         return ResponseEntity.ok(pets);
     }
 

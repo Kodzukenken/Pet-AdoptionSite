@@ -15,11 +15,22 @@ public class Pet {
     private String careNotes;
     private String path;
 
-
-    public Pet(ObjectId id, int type) {
-        this.id = id;
+    // No-argument constructor (required for Spring Data)
+    public Pet() {
     }
 
+    // Constructor with all fields
+    public Pet(ObjectId id, ObjectId typeId, ObjectId shelterId, int age, String vaccine, String careNotes, String path) {
+        this.id = id;
+        this.typeId = typeId;
+        this.shelterId = shelterId;
+        this.age = age;
+        this.vaccine = vaccine;
+        this.careNotes = careNotes;
+        this.path = path;
+    }
+
+    // Getters and Setters
     public ObjectId getId() {
         return id;
     }
@@ -52,6 +63,14 @@ public class Pet {
         this.age = age;
     }
 
+    public String getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(String vaccine) {
+        this.vaccine = vaccine;
+    }
+
     public String getCareNotes() {
         return careNotes;
     }
@@ -67,13 +86,4 @@ public class Pet {
     public void setPath(String path) {
         this.path = path;
     }
-
-    public String getVaccine() {
-        return vaccine;
-    }
-
-    public void setVaccine(String vaccine) {
-        this.vaccine = vaccine;
-    }
 }
-

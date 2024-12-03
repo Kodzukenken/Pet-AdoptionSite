@@ -1,5 +1,6 @@
 package com.example.pet_adoption.controller;
 
+import com.example.pet_adoption.dto.AdoptionRequestDTO;
 import com.example.pet_adoption.model.AdoptionRequest;
 import com.example.pet_adoption.service.AdoptionRequestService;
 import org.bson.types.ObjectId;
@@ -18,8 +19,8 @@ public class AdoptionRequestController {
     private AdoptionRequestService adoptionRequestService;
 
     @GetMapping
-    public List<AdoptionRequest> getAllRequests() {
-        return adoptionRequestService.getAllRequests();
+    public ResponseEntity<List<AdoptionRequestDTO>> getAllAdoptionRequests() {
+        return ResponseEntity.ok(adoptionRequestService.getAllAdoptionRequests());
     }
 
     @GetMapping("/{id}")
