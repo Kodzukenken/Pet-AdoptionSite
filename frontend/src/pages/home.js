@@ -1,9 +1,7 @@
 import React from "react";
 import "../styles/home.css";
-import dog1Image from "../assets/dog1.png"; // Replace with actual path
-import catImage from "../assets/cat.png";
-import dog2Image from "../assets/dog2.png";
 import background from "../assets/bg.png";
+import video from "../assets/homevideo.mp4";
 
 const Home = () => {
     return (
@@ -30,6 +28,12 @@ const Home = () => {
                 <div className="circle circle--large"></div>
                 <div className="circle circle--medium"></div>
                 <div className="circle circle--small"></div>
+                <div className="home_video-container">
+                    <video className="home_video" controls>
+                        <source src="{homevideo}"  autoplay="true" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
         </section>
     );

@@ -14,19 +14,19 @@ public class Adopter {
     private String phone;
     private String email;
     private String address;
-    private Date dob;
-    private String path;
+    private int age;
+    private String role;
 
     public Adopter() {}
 
-    public Adopter(ObjectId id, String name, String phone, String email, String address, Date dob, String path) {
+    public Adopter(ObjectId id, String name, String phone, String email, String address, int age, String role) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.dob = dob;
-        this.path = path;
+        this.age = age;
+        this.role = role;
     }
 
     public ObjectId getId() {
@@ -69,19 +69,19 @@ public class Adopter {
         this.address = address;
     }
 
-    public Date getDob() {
-        return dob;
+    public int getAge() {
+        return age;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getPath() {
-        return path;
+    public String getRole() {
+        return role;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

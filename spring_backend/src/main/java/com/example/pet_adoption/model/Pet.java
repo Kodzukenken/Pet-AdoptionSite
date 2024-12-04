@@ -4,23 +4,33 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document(collection = "pets")  // MongoDB collection name
 public class Pet {
     @Id
     private ObjectId id;
-    private ObjectId type_id;
-    private ObjectId shelter_id;
-    private Date dob;
-    private String care_notes;
+    private ObjectId typeId;
+    private ObjectId shelterId;
+    private int age;
+    private String vaccine;
+    private String careNotes;
     private String path;
 
-
-    public Pet(ObjectId id, int type) {
-        this.id = id;
+    // No-argument constructor (required for Spring Data)
+    public Pet() {
     }
 
+    // Constructor with all fields
+    public Pet(ObjectId id, ObjectId typeId, ObjectId shelterId, int age, String vaccine, String careNotes, String path) {
+        this.id = id;
+        this.typeId = typeId;
+        this.shelterId = shelterId;
+        this.age = age;
+        this.vaccine = vaccine;
+        this.careNotes = careNotes;
+        this.path = path;
+    }
+
+    // Getters and Setters
     public ObjectId getId() {
         return id;
     }
@@ -29,36 +39,44 @@ public class Pet {
         this.id = id;
     }
 
-    public ObjectId getType_id() {
-        return type_id;
+    public ObjectId getTypeId() {
+        return typeId;
     }
 
-    public void setType_id(ObjectId type_id) {
-        this.type_id = type_id;
+    public void setTypeId(ObjectId typeId) {
+        this.typeId = typeId;
     }
 
-    public ObjectId getShelter_id() {
-        return shelter_id;
+    public ObjectId getShelterId() {
+        return shelterId;
     }
 
-    public void setShelter_id(ObjectId shelter_id) {
-        this.shelter_id = shelter_id;
+    public void setShelterId(ObjectId shelterId) {
+        this.shelterId = shelterId;
     }
 
-    public Date getDob() {
-        return dob;
+    public int getAge() {
+        return age;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getCare_notes() {
-        return care_notes;
+    public String getVaccine() {
+        return vaccine;
     }
 
-    public void setCare_notes(String care_notes) {
-        this.care_notes = care_notes;
+    public void setVaccine(String vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    public String getCareNotes() {
+        return careNotes;
+    }
+
+    public void setCareNotes(String careNotes) {
+        this.careNotes = careNotes;
     }
 
     public String getPath() {
@@ -69,4 +87,3 @@ public class Pet {
         this.path = path;
     }
 }
-
