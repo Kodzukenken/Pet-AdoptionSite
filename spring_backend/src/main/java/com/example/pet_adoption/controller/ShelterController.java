@@ -25,6 +25,12 @@ public class ShelterController {
         return ResponseEntity.ok(shelterService.getAllShelters());
     }
 
+    // order by clicks
+    @GetMapping("/sort-by-click")
+    public List<Shelter> getShelterSortByClicks(){
+        return shelterService.getSheltersSortByClicks();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Shelter> getShelterById(@PathVariable ObjectId id) {
         return shelterService.getShelterById(id)

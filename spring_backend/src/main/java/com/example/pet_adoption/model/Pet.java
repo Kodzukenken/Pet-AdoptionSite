@@ -13,7 +13,7 @@ public class Pet {
     private int age;
     private String vaccine;
     private String careNotes;
-    private String path;
+    private String path;  //path to img
 
     // No-argument constructor (required for Spring Data)
     public Pet() {

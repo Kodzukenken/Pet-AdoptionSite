@@ -30,17 +30,33 @@ public class PetService {
     public Optional<Pet> getPetById(ObjectId id) {
         return petRepository.findById(id);
     }
+    
     public Pet createPet(Pet pet) {
-        return petRepository.save(pet);
+        Pet savedPet = petRepository.save(pet);
+    
+        // Check if shelter exists, update availablePets list
+        Shelter shelter = shelterRepository.findById(savedPet.getShelterId())
+            .orElseThrow(() -> new RuntimeException("Shelter not found")); // If shelter not found
+    
+        List<ObjectId> availablePets = shelter.getAvailablePets();
+        if (!availablePets.contains(savedPet.getId())) {
+            availablePets.add(savedPet.getId());
+            shelter.setAvailablePets(availablePets);
+            shelterRepository.save(shelter);
+        }
+    
+        return savedPet;
     }
-
+    
     public List<PetDTO> getAllPets() {
         List<Pet> pets = petRepository.findAll();
 
         return pets.stream()
                 .map(pet -> {
-                    Shelter shelter = shelterRepository.findById(pet.getShelterId()).orElse(null);
-                    Category category = categoryRepository.findById(pet.getTypeId()).orElse(null);
+                    Shelter shelter = shelterRepository.findById(pet.getShelterId())
+                        .orElseThrow(() -> new RuntimeException("Shelter not found"));
+                    Category category = categoryRepository.findById(pet.getTypeId())
+                        .orElseThrow(() -> new RuntimeException("Category not found"));
 
                     String shelterName = shelter != null ? shelter.getName() : "Unknown Shelter";
                     String petType = category != null && category.getType() == 1 ? "Dog" : "Cat";
@@ -51,7 +67,7 @@ public class PetService {
                             pet.getAge(),
                             pet.getVaccine(),
                             pet.getCareNotes(),
-                            pet.getPath()
+                            pet.getPath() //img path
                     );
                 })
                 .collect(Collectors.toList());

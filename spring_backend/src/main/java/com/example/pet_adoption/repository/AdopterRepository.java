@@ -21,13 +21,6 @@ public interface AdopterRepository extends MongoRepository<Adopter, ObjectId> {
     @Query("{ 'dob' : { $lt: ?0 } }")
     List<Adopter> findAdoptersOlderThan(java.util.Date dob);
 
-<<<<<<< HEAD
-    // Update the address of an adopter by ID
-    // @Query(value = "{ '_id' : ?0 }", update = "{ '$set' : { 'address' : ?1 } }")
-    // void updateAddressById(ObjectId id, String newAddress);
-
-=======
->>>>>>> 16802e2f75fffb8ec3e7c7fd2adaf0653591ce98
     // Delete adopters by name
     void deleteByName(String name);
 }

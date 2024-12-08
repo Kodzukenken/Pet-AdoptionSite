@@ -4,6 +4,7 @@ import com.example.pet_adoption.model.Shelter;
 import com.example.pet_adoption.repository.ShelterRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +54,10 @@ public class ShelterService {
             return shelterRepository.save(shelter);
         }
         return null;
+    }
+
+    public List<Shelter> getSheltersSortByClicks(){
+        return shelterRepository.findAll(Sort.by(Sort.Direction.DESC, "clickCount"));
     }
 
     public void deleteShelter(ObjectId id) {

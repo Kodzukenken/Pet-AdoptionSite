@@ -10,6 +10,10 @@ public class Category {
     private ObjectId id;
     private int type;
 
+    public Category(){
+        
+    }
+
     public Category(ObjectId id, int type) {
         this.id = id;
         this.type = type;

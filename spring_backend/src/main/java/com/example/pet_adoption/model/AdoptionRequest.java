@@ -23,6 +23,10 @@ public class AdoptionRequest {
 
     private String petName;
 
+    public AdoptionRequest(){
+
+    }
+
     public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Shelter shelter, Category petCategory, String petName) {
         this.id = id;
         this.adopterName = adopterName;

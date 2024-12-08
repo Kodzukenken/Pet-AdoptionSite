@@ -17,14 +17,10 @@ import java.util.Optional;
 public class AdopterService {
 
     @Autowired
-<<<<<<< HEAD
-    private AdopterRepository adoptersRepository;
-=======
     private AdopterRepository adopterRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;
->>>>>>> 16802e2f75fffb8ec3e7c7fd2adaf0653591ce98
 
     public List<Adopter> getAllAdopters() {
         return adopterRepository.findAll();
