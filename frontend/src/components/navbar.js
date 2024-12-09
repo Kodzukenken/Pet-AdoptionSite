@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "../styles/navbar.css";
-import {
-    HOME,
-    USERDASH,
-    SEARCH,
-} from "../constants/routes";
+
+// import {
+//     HOME,
+//     USERDASH,
+//     SEARCH,
+//     LANDING_PAGE
+// } from "../constants/routes";
 // import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
 import logo from "../assets/logo.png"; // Adjust the path as needed
 
 export default function Navbar (currentPath) {
     // State to manage menu visibility
-    const { isLoggedIn, removeUser} = useUser();
+    // const { isLoggedIn, removeUser} = useUser();
     
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const navigate = useNavigate();
     // Function to toggle menu visibility
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -61,7 +64,7 @@ export default function Navbar (currentPath) {
                 </div>
 
             {/* user functions */}
-                <div className="user">
+                {/* <div className="user">
                     {isLoggedIn ? (
                         <>
                         <Link
@@ -72,7 +75,7 @@ export default function Navbar (currentPath) {
                             : "hover:text-yellow-500"
                         }`}
                         >
-                        <AccountCircleIcon className="mr-2" />
+                        {/* <AccountCircleIcon className="mr-2" />
                         My profile
                         </Link>
                         <button
@@ -92,7 +95,7 @@ export default function Navbar (currentPath) {
                             Login
                         </Link>
                     )}
-                </div>
+                </div> */}
             </nav>
         </header>
     );
