@@ -2,18 +2,15 @@ import React from 'react';
 import './App.css';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Navbar from '../src/components/navbar';
+import Navbar from '../src/components/navbar';
 import Footer from '../src/components/footer';
 import Home from '../src/pages/home';
-
-
-
 
 function App() {
   return (
       <Router>
           <div className="App">
-              {/* <Navbar /> */}
+              <Navbar /> {/* Navbar is now unblocked */}
               <div className="container">
                   <Routes>
                       <Route path="/" element={<Home />} />
@@ -27,6 +24,5 @@ function App() {
       </Router>
   );
 }
-
 
 export default App;

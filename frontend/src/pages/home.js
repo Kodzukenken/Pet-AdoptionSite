@@ -6,13 +6,18 @@ import aboutus2 from "../assets/aboutus2.jpg";
 import aboutus3 from "../assets/aboutus3.jpg";
 import aboutus4 from "../assets/aboutus4.jpg";
 import aboutus5 from "../assets/aboutus5.jpg";
+import petHome from "../assets/petHome.jpeg";
+import petDiet from "../assets/petDiet.jpeg";
+import petPlay from "../assets/petPlay.jpeg";
+import petVet from "../assets/petVet.jpeg";
+import petgroom from "../assets/petgroom.jpeg";
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentPetSlide, setCurrentPetSlide] = useState(0);
-
+    const [currentTip, setCurrentTip] = useState(0);
     const mockPets = [
         {
             id: 1,
@@ -76,6 +81,44 @@ const Home = () => {
         },
     ];
 
+    const petCareTips = [
+        {
+            id: 1,
+            title: "Prepare Your Home",
+            image: "/assets/pethome.jpeg",
+            description: "Create a safe and cozy environment to make your pet feel at home.",
+        },
+        {
+            id: 2,
+            title: "Healthy Diet",
+            icon: "🍖",
+            description: "Feed them a balanced diet accordingly.",
+        },
+        {
+            id: 3,
+            title: "Exercise and Play",
+            icon: "🏃‍♂️",
+            description: "Ensure your pet gets enough exercise and playtime to stay healthy and happy.",
+        },
+        {
+            id: 4,
+            title: "Vet Visits",
+            icon: "👩‍⚕️",
+            description: "Visit your vet regularly to check on your pet's health and well-being.",
+        },
+        {
+            id: 5,
+            title: "Grooming",
+            icon: "🧼",
+            description: "Brush and groom your pet to keep them looking and feeling their best.",
+        },
+    ]
+
+
+    const handleNextTip = () => {
+        setCurrentTip((prevTip) => (prevTip + 1) % petCareTips.length);
+    };
+    
     const sliderImages = [aboutus2, aboutus3, aboutus4, aboutus5];
     const petSlideCount = Math.ceil(mockPets.length / 3);
 
@@ -100,7 +143,6 @@ const Home = () => {
             (prevSlide - 1 + (mockPets.length - 4)) % (mockPets.length - 4)
         );
     };
-    
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -147,6 +189,39 @@ const Home = () => {
                 </video>
             </div>
 
+            <div
+                className={`adoption__section ${isVisible ? "visible" : "hidden"}`}
+                ref={sectionRef}
+            >
+                <h2 className="card__title">Looking for a pet?</h2>
+                <div className="adoption__cards">
+                    <div className="adoption__card">
+                        <div className="adoption__icon">🏠</div>
+                        <h3 className="adoption__card-title">Our Shelters</h3>
+                        <p className="adoption__description">
+                            Check out our trusted and reliable shelters, ready to provide homes
+                        </p>
+                        <button className="adoption__button">See Shelters</button>
+                    </div>
+                    <div className="adoption__card">
+                        <div className="adoption__icon">🐱</div>
+                        <h3 className="adoption__card-title">Cat Adoption</h3>
+                        <p className="adoption__description">
+                            Meet our fuzzy snuggly friends waiting with purring hearts for their forever homes
+                        </p>
+                        <button className="adoption__button">Adopt a Cat</button>
+                    </div>
+                    <div className="adoption__card">
+                        <div className="adoption__icon">🐶</div>
+                        <h3 className="adoption__card-title">Dog Adoption</h3>
+                        <p className="adoption__description">
+                            Meet our furry friends waiting with tail-wagging excitement for their forever homes
+                        </p>
+                        <button className="adoption__button">Adopt a Dog</button>
+                    </div>
+                </div>
+            </div>
+
             <div className="featured-pets_section">
                 <h2 className="featured-pets_title">Featured Pets</h2>
                 <div className="featured-pets_carousel">
@@ -167,18 +242,10 @@ const Home = () => {
                                         className="featured-pet_image"
                                     />
                                     <h3 className="featured-pet_name">{pet.name}</h3>
-                                    <p className="featured-pet_type">Type: {pet.type}</p>
-                                    <p className="featured-pet_gender">Gender: {pet.gender}</p>
+                                    {/* <p className="featured-pet_type">Type: {pet.type}</p>
+                                    <p className="featured-pet_gender">Gender: {pet.gender}</p> */}
                                     <p className="featured-pet_age">Age: {pet.age} years</p>
-                                    {/* <p className="featured-pet_shelter">Shelter: {pet.shelter}</p>
-                                    <div className="featured-pet_vaccines">
-                                        <h4>Vaccines:</h4>
-                                        <ul>
-                                            {pet.vaccines.map((vaccine, index) => (
-                                                <li key={index}>{vaccine}</li>
-                                            ))}
-                                        </ul>
-                                    </div> */}
+                                    
                                     <button className="featured-pet_button">
                                         Adopt {pet.name}
                                     </button>
@@ -193,8 +260,7 @@ const Home = () => {
                     </button>
                 </div>
             </div>
-
-
+            
             <div className="about_container">
                 <div className="about_content">
                     <h1 className="about_title">About Us</h1>
@@ -219,6 +285,28 @@ const Home = () => {
                     </button>
                 </div>
             </div>
+
+            {/* <section className="pet-care-tips-section" onClick={handleNextTip}>
+            <h2 className="pet-care-tips__title">Pet Care Tips</h2>
+            <div className="pet-care-tip-container">
+                <div
+                    className="pet-care-tip active"
+                    key={petCareTips[currentTip].id}
+                >
+                    <div className="pet-care-tip-content">
+                        <div className="pet-care-tip-icon">
+                            {petCareTips[currentTip].icon}
+                        </div>
+                        <h2 className="pet-care-tip-title">
+                            {petCareTips[currentTip].title}
+                        </h2>
+                        <p className="pet-care-tip-description">
+                            {petCareTips[currentTip].description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section> */}
         </section>
     );
 };

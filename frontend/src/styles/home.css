@@ -160,7 +160,7 @@
     font-size: 2rem;
     font-weight: bold;
     color: #51a5ff;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     margin-top: 1rem;
 }
 
@@ -179,7 +179,7 @@
     justify-content: center;
     gap: 4rem;
     flex-wrap: wrap; 
-    margin-bottom: 4rem;
+margin-bottom: 2rem;
 }
 
 .adoption__card {
@@ -262,7 +262,7 @@
     gap: 2rem; 
     flex-wrap: wrap; 
     margin-bottom: 5rem;
-    margin-top: 0%;
+    margin-top: 5rem;
 }
 
 .about_content {
@@ -333,7 +333,7 @@
 
 .featured-pets_section {
     background-color: white;
-    padding: 2rem 0;
+    padding: 1rem 0;
     text-align: center;
     z-index: 1;
     position: relative;
@@ -457,5 +457,54 @@
     background-color: #3e8cd1;
 }
 
+.pet-care-tips-section {
+    text-align: center;
+    padding: 40px 20px;
+    cursor: pointer;
+}
 
+.pet-care-tips__title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
 
+.pet-care-tip-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 150px; /* Adjust height based on content */
+}
+
+.pet-care-tip {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.pet-care-tip.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pet-care-tip-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pet-care-tip-icon {
+    font-size: 2.5rem;
+}
+
+.pet-care-tip-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.pet-care-tip-description {
+    font-size: 1rem;
+    max-width: 400px;
+}
