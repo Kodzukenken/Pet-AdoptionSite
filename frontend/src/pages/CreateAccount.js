@@ -19,7 +19,7 @@ const CreateAccount = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert(`Account created successfully for ${formData.username}!`);
-        navigate('/login'); // Redirect to Login page
+        navigate('/login');
     };
 
     return (
