@@ -45,4 +45,24 @@ public class AdopterController {
         adopterService.deleteAdopter(id);
         return ResponseEntity.noContent().build();
     }
+        //account login functions & etc
+    @PutMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody @Valid AdopterSignupRequest adopterRequest){
+        adopterService.registerUser(adopterRequest);
+        return ResponseEntity.ok("User registered successfully!");
+    }
+
+        //make login & token generation
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest){
+      String token = adopterService.authenticateUser(loginRequest);
+      return ResponseEntity.ok(new LoginResponse(token));
+    }
+
+        //make mechanism, only check email valid then reenter pass
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request){
+      adopterService.generatePasswordResetToken(request.getEmail());
+      return ResponseEntity.ok("Password reset link sent!");
+    }
 }

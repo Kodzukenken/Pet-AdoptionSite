@@ -7,7 +7,7 @@ import {
 } from "../services";
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../context/user-context";
-import { HOME } from '../constants/routes';
+import { HOME, USERDASH } from '../constants/routes';
 import Swal from "sweetalert2";
 
 export default function Landing(){
@@ -94,7 +94,50 @@ export default function Landing(){
       password: password,
     };
     try{
-      
+      setIsLoading(true);
+      const response = await register(data);
+      if(response.status === 440){
+        setErrorMessage("Session Expired, please try again!");
+      }
+      loginUser();
+      navigate(USERDASH);
+      setIsLoading(false);
+      setErrorMessage(error.message);
+    }
+  };
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    if(validateEmail(email.trim())) {
+      try{
+        setIsLoading(true);
+        // const response = await postForgotPassword(email);
+        // if(response.status === 201){
+        //   Swal.fire({
+        //     title: "Success!",
+        //     text: "P"
+        //   })
+        // }
+      } catch (error){
+        setErrorMessage("");
+        setIsLoading(false);
+      }
     }
   }
+
+  const scrollToFormContainer = () => {
+    const formContainer = document.getElementById("form-container");
+
+    if(formContainer){
+      formContainer.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div>
+      
+    </div>
+  );
 }

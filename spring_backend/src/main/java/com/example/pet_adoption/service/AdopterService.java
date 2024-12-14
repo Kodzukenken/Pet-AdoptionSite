@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import com.example.pet_adoption.dto.SignupRequest;
+import com.example.pet_adoption.dto.LoginRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,5 +44,19 @@ public class AdopterService {
 
     public void deleteAdopter(ObjectId id) {
         adopterRepository.deleteById(id);
+    }
+
+    //regist
+    public void registerUser(SignupRequest request){
+        // check email
+      if(adopterRepository.findByEmail(request.getEmail())){
+        throw new IllegalArgumentException("Email already registered!");
+      }
+
+      //encrypt pass
+      String encryptPassword = passwordEncoder.encode(request.getPassword());
+
+      Adopter newUser = new Adopter(request.getEmail(), encryptPassword, request.getName());
+      adopterRepository.save(newUser);
     }
 }
