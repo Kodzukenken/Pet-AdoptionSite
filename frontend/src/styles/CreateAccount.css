@@ -1,5 +1,5 @@
 /* General wrapper for the page */
-.login-wrapper {
+.create-account-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 /* Card container */
-.login-card {
+.create-account-card {
     width: 100%;
     max-width: 400px;
     background: #ffffff;
@@ -27,9 +27,9 @@
 }
 
 /* Heading */
-.login-card h1 {
+.create-account-card h1 {
     font-size: 30px;
-    color: #0075ff; /* Primary blue for heading */
+    color: #0075ff; /* Purple for heading */
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -85,30 +85,30 @@ form input:focus {
     background-color: #6a0dad; /* Darker purple on click */
 }
 
-/* Signup link */
-.signup-link {
+/* Login link */
+.login-link {
     margin-top: 15px;
     font-size: 14px;
     color: #666666;
 }
 
-.signup-link a {
+.login-link a {
     color: #6a0dad;
     text-decoration: none;
     font-weight: bold;
 }
 
-.signup-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }
 
 /* Responsive design for mobile devices */
 @media (max-width: 768px) {
-    .login-card {
+    .create-account-card {
         padding: 20px;
     }
 
-    .login-card h1 {
+    .create-account-card h1 {
         font-size: 22px;
     }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom"
 import "../styles/home.css";
 import background from "../assets/bg.png";
 import video from "../assets/homevideo.mp4";
@@ -209,7 +210,10 @@ const Home = () => {
                         <p className="adoption__description">
                             Meet our fuzzy snuggly friends waiting with purring hearts for their forever homes
                         </p>
-                        <button className="adoption__button">Adopt a Cat</button>
+                        <Link to="/cat-adoption">
+                            <button className="adoption__button">Adopt a Cat</button>
+                        </Link>
+                    
                     </div>
                     <div className="adoption__card">
                         <div className="adoption__icon">🐶</div>

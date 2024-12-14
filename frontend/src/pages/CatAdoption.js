@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/catAdoptionPage.css";
+import "../styles/catAdoption.css";
 
 const mockCats = [
     {
@@ -44,7 +44,7 @@ const mockCats = [
     },
 ];
 
-const CatAdoptionPage = () => {
+const CatAdoption = () => {
     return (
         <section className="cat-adoption-page">
             <h1 className="cat-adoption-title">Adopt a Cat</h1>
@@ -75,4 +75,4 @@ const CatAdoptionPage = () => {
     );
 };
 
-export default CatAdoptionPage;
+export default CatAdoption;
