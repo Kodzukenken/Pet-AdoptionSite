@@ -7,11 +7,11 @@ import aboutus2 from "../assets/aboutus2.jpg";
 import aboutus3 from "../assets/aboutus3.jpg";
 import aboutus4 from "../assets/aboutus4.jpg";
 import aboutus5 from "../assets/aboutus5.jpg";
-import petHome from "../assets/petHome.jpeg";
-import petDiet from "../assets/petDiet.jpeg";
-import petPlay from "../assets/petPlay.jpeg";
-import petVet from "../assets/petVet.jpeg";
-import petgroom from "../assets/petgroom.jpeg";
+// import petHome from "../assets/petHome.jpeg";
+// import petDiet from "../assets/petDiet.jpeg";
+// import petPlay from "../assets/petPlay.jpeg";
+// import petVet from "../assets/petVet.jpeg";
+// import petgroom from "../assets/petgroom.jpeg";
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -173,7 +173,9 @@ const Home = () => {
                     <p className="home__description">
                         We believe that every pet deserves a loving home.
                     </p>
-                    <button className="home__button">Adopt a Pet</button>
+                    <Link to={"/search"}>
+                        <button className="home__button">Adopt a Pet</button>
+                    </Link>
                 </div>
                 <div className="home__images">
                     <img src={background} alt="Background" className="home__image background" />
@@ -221,7 +223,9 @@ const Home = () => {
                         <p className="adoption__description">
                             Meet our furry friends waiting with tail-wagging excitement for their forever homes
                         </p>
-                        <button className="adoption__button">Adopt a Dog</button>
+                        <Link to="/dog-adoption">
+                            <button className="adoption__button">Adopt a Dog</button>
+                        </Link>
                     </div>
                 </div>
             </div>

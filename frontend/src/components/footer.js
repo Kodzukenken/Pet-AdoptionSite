@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../assets/logoTransparent.png";
 import "../styles/footer.css"; // Make sure this path matches your CSS file
+import { Link } from "react-router-dom"
+
 
 export default function Footer() {
     return (
@@ -44,9 +46,9 @@ export default function Footer() {
                 <div className="footer__signup-card">
                     <h3 className="footer__heading">Stay Updated!</h3>
                     <p>Join our newsletter for pet adoption updates and tips.</p>
-                    <form className="signup-form">
+                    <Link to={"/create-account"}>
                         <button type="submit" className="signup-button">Sign Up</button>
-                    </form>
+                    </Link>
                 </div>
             </div>
 
