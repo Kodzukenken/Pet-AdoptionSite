@@ -1,25 +1,25 @@
 import axios from "axios";
 import axiosInstance from "../config/axiosConfig";
 
-const login = async (data) => {
-  try {
-    const response = await axiosInstance.post(API_LOGIN, data);
-    const token = response.data.token;
-    const userId = response.data.user.id;
-    localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
-    return response.data;
-  } catch (error) {
-    console.error("Error logging in: ", error);
-    if (error.response) {
-      throw new Error(
-      error.response.data.message[0].msg || "Incorrrect email or password"
-        );
-    } else {
-      throw new Error("Network error");
-    }
-  }
-}
+// const login = async (data) => {
+//   try {
+//     const response = await axiosInstance.post(API_LOGIN, data);
+//     const token = response.data.token;
+//     const userId = response.data.user.id;
+//     localStorage.setItem("token", token);
+//     localStorage.setItem("userId", userId);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error logging in: ", error);
+//     if (error.response) {
+//       throw new Error(
+//       error.response.data.message[0].msg || "Incorrrect email or password"
+//         );
+//     } else {
+//       throw new Error("Network error");
+//     }
+//   }
+// }
 
 const register = async (data) => {
   try{

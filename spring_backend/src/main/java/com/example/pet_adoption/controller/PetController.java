@@ -48,10 +48,13 @@ public class PetController {
         petService.deletePet(id);
         return ResponseEntity.noContent().build();
     }
+<<<<<<< HEAD
 
     // testing
     @GetMapping("/test")
     public String test(){
         return "Server is running!";
     }
+=======
+>>>>>>> 8b5aad5109f64beca4a09198bb4ba5335bb37b5f
 }
