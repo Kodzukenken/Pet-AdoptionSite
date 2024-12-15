@@ -4,11 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import safeSpace from "../assets/dogSafeSpace.jpeg";
-import healthyFood from "../assets/dogHealthyFood.jpeg";
-import playInteract from "../assets/dogPlayInteract.jpeg";
+import safeSpace from "../assets/dogHouse.jpg";
+import healthyFood from "../assets/dogFood.jpeg";
+import playInteract from "../assets/dogPlay.jpg";
 
-// Replace mock data with dogs
 const mockDogs = [
     { id: 1, name: "Buddy", age: 2, breed: "Golden Retriever", image: "https://via.placeholder.com/300" },
     { id: 2, name: "Max", age: 4, breed: "German Shepherd", image: "https://via.placeholder.com/300" },

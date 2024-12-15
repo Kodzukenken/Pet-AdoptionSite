@@ -19,6 +19,8 @@
     justify-content: space-between;
     margin-top: 0;
     margin-right: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 
@@ -82,7 +84,8 @@
 .circle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.5; /* Optional: adds transparency */
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .circle--large {
@@ -98,7 +101,7 @@
     height: 100px;
     background-color: #ffdd57; /* Yellow color */
     top: 70%;
-    left: 10%;
+    left: 5%;
 }
 
 .circle--small {
