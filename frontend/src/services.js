@@ -1,5 +1,16 @@
 import axios from "axios";
 import axiosInstance from "../config/axiosConfig";
+import {
+  API_LOGIN,
+  API_SIGNUP,
+  API_POST_FORGOT_PASSWORD,
+  API_PUT_RESET_PASSWORD,
+  API_PROFILE_DATA,
+  API_GET_ADOPTION_REQUESTS,
+  API_CREATE_ADOPTION_REQUEST,
+  API_GET_ALL_PETS,
+
+} from "../src/config/endpoints";
 
 const login = async (data) => {
   try {
@@ -19,7 +30,7 @@ const login = async (data) => {
       throw new Error("Network error");
     }
   }
-}
+};
 
 const register = async (data) => {
   try{
@@ -39,17 +50,24 @@ const register = async (data) => {
   }
 }
 
-const postForgotPassword = async(email) => {
-  const data = {email: email};
+const postForgotPassword = async (email) => {
+  const data = { email: email };
 
-  try{
+  try {
     const res = await axiosInstance.post(API_POST_FORGOT_PASSWORD, data);
-    return res;
-  } catch (error){
-    console.error("Error forgot password: ", error);
-    throw error;
+
+    // check email
+    if (res.status === 200) {
+      return res; 
+    } else {
+      throw new Error("Email not registered");
+    }
+  } catch (error) {
+    console.error("Error in forgot password: ", error);
+    throw error || "An error occurred while verifying the email.";
   }
 };
+
 
 // no need send email
 const putResetPassword = async ({ email, password }) => {
@@ -73,7 +91,6 @@ const fetchProfileData = async (data) => {
     throw error;
   }
 };
-
 
 // PUT profile data
 const putProfileData = async (data) => {
