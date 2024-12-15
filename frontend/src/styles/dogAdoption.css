@@ -1,0 +1,34 @@
+.dog-adoption-page {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #c4e788;
+    min-height: 100vh;
+}
+
+.dog-adoption-intro {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dog-adoption-title {
+    font-size: 2.5rem;
+    color: #20ade9;
+    font-weight: bold;
+}
+
+.dog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.dog-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
