@@ -1,43 +1,55 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PetPreviewCard from '../components/elements/petPreview-card';
+import '../styles/searchPage.css';
 
 const SearchPage = ({ pets }) => {
-   
-const [statusFilter, setStatusFilter] = useState('available'); // Default filter to 'available' pets
+  const [statusFilter, setStatusFilter] = useState('all'); // 'available' or 'processing'
+  const [typeFilter, setTypeFilter] = useState(''); // 'dog', 'cat', or ''
 
-    // Filtered list based on status
-const filteredPets = pets.filter(pet => {
-  if (statusFilter === 'available') return pet.adoptionStatus === 'available';
-  if (statusFilter === 'processing') return pet.adoptionStatus === 'processing';
-  return true; // Show all if no filter is applied
-});
+  // Filter pets based on status and type
+  const filteredPets = pets.filter(pet => {
+    const matchesStatus = statusFilter === 'all' || pet.adoptionStatus === statusFilter;
+    const matchesType = typeFilter === '' || pet.type === typeFilter;
+    return matchesStatus && matchesType;
+  });
 
   return (
     <div className="search-page">
-      <h1> Pet Adoption Search </h1>
+      <h1>Pet Adoption Search</h1>
 
-        {/* status filter */}
+      {/* Status Filter */}
+      <div className="filter-controls">
+        <h2>Filter by Status</h2>
+        <button onClick={() => setStatusFilter('available')}>Available</button>
+        <button onClick={() => setStatusFilter('processing')}>Processing</button>
+        <button onClick={() => setStatusFilter('all')}>All Status</button>
+      </div>
 
-        {/* type filter */}
-          <div className="filter-controls">
-            <button onClick={() => setTypeFilter('dog')}> Dog </button>
-            <button onClick={() => setTypeFilter('cat')}> Cat </button>
-            <button onClick={() => setTypeFilter('')}> All Types </button>
-          </div>
+      {/* Type Filter */}
+      <div className="filter-controls">
+        <h2>Filter by Type</h2>
+        <button onClick={() => setTypeFilter('dog')}>Dog</button>
+        <button onClick={() => setTypeFilter('cat')}>Cat</button>
+        <button onClick={() => setTypeFilter('')}>All Types</button>
+      </div>
 
-        {/* Filtered Pets */}
-          <div className="pet-list">
-            {filteredPets.map(pet => (
-              <PetPreviewCard
-                key={pet.id}
-                id={pet.id}
-                name={pet.name}
-                age={pet.age}
-                image={pet.image}
-                adoptionStatus={pet.adoptionStatus}
-          />
-            ))}
-        </div>
+      {/* Display Filtered Pets */}
+      <div className="pet-list">
+        {filteredPets.length > 0 ? (
+          filteredPets.map(pet => (
+            <PetPreviewCard
+              key={pet.id}
+              id={pet.id}
+              name={pet.name}
+              age={pet.age}
+              image={pet.image}
+              adoptionStatus={pet.adoptionStatus}
+            />
+          ))
+        ) : (
+          <p className="no-results">No pets found. Please adjust your filters.</p>
+        )}
+      </div>
     </div>
   );
 };

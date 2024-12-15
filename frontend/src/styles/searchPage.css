@@ -1,0 +1,121 @@
+/* General Page Styles */
+.search-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #c4e788; /* Matching background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+.search-page h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #20ade9;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.filter-controls h2 {
+    font-size: 1.2rem;
+    color: #4a148c;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-controls button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #20ade9;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-controls button:hover {
+    background-color: #4a148c; /* Hover color */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.filter-controls button:active {
+    transform: translateY(0);
+}
+
+/* Pet List */
+.pet-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* No Results */
+.no-results {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Card Styles for Pets */
+.pet-preview-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pet-preview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pet-preview-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.pet-preview-card h3 {
+    font-size: 1.2rem;
+    color: #4a148c;
+    margin-bottom: 10px;
+}
+
+.pet-preview-card p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.pet-preview-card .adoption-status {
+    font-size: 1rem;
+    color: #20ade9;
+    font-weight: bold;
+}
+
+.pet-preview-card .adoption-status.processing {
+    color: #ffcc00;
+}
+
+.pet-preview-card .adoption-status.unavailable {
+    color: #ff0000;
+}
