@@ -22,20 +22,17 @@ const SearchPage = () => {
     );
   });
 
+  // Slider Settings
   const sliderSettings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    arrows: true, // Enable arrows
-    prevArrow: <button className="slick-prev">{"<"}</button>,
-    nextArrow: <button className="slick-next">{">"}</button>,
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
-  
 
   return (
     <div className="search-page">
@@ -65,6 +62,7 @@ const SearchPage = () => {
       {filteredPets.length > 0 && (
         <div className="slider-section">
           <h2>Search Results</h2>
+          <Slider {...sliderSettings}>
             {filteredPets.map((pet) => (
               <PetPreviewCard
                 key={pet.id}
@@ -76,7 +74,7 @@ const SearchPage = () => {
                 image={pet.image}
               />
             ))}
-
+          </Slider>
         </div>
       )}
 
