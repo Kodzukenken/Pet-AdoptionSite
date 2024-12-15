@@ -6,9 +6,11 @@ const CreateAccount = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
+        age: '',
         password: '',
     });
 
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -18,7 +20,19 @@ const CreateAccount = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Account created successfully for ${formData.username}!`);
+
+        if (parseInt(formData.age) < 18) {
+            setError('You must be at least 18 years old to create an account.');
+            return;
+        }
+        
+        if (parseInt(formData.age) || parseInt(formData.age) <= 0) {
+            setError('Please enter a valid age.');
+            return;
+        }
+
+        setError("");
+        alert(`Account created successfully.`);
         navigate('/login');
     };
 
@@ -45,6 +59,15 @@ const CreateAccount = () => {
                         required
                     />
                     <input
+                        type="number"
+                        name="age"
+                        placeholder="Age"
+                        value={formData.age}
+                        onChange={handleChange}
+                        required
+                        min="1"
+                    />
+                    <input
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -52,6 +75,7 @@ const CreateAccount = () => {
                         onChange={handleChange}
                         required
                     />
+                    {error && <p className="error-message">{error}</p>}
                     <button type="submit" className="submit-button">
                         Create Account
                     </button>

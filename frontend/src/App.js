@@ -2,16 +2,15 @@ import React from 'react';
 import './App.css';
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar2 from '../src/components/navbar2';
 import Footer from '../src/components/footer';
 import Home from '../src/pages/home';
-import CatAdoption from './pages/catAdoption'; 
+import CatAdoption from './pages/CatAdoption'; 
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
 
 function App() {
     const currentPath = window.location.pathname;
-    const hideNavbarRoutes = ['/create-account'];
+    // const hideNavbarRoutes = ['/create-account'];
   return (
       <Router>
           <div className="App">
