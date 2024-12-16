@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../context/user-context";
 import { HOME, USERDASH } from '../constants/routes';
+import AdoptionRequests from '../pages/admin/adoption-requests';
 import Swal from "sweetalert2";
 
 export default function Landing() {
@@ -37,7 +38,12 @@ export default function Landing() {
                 setIsLoading(true);
                 const response = await login({ email, password });
                 loginUser(response.user);
-                navigate(HOME);
+                
+                if (response.user.role === "admin") {
+                    navigate("/admin/adoption-requests");
+                } else {
+                    navigate(HOME);
+                }
             } catch (error) {
                 setErrorMessage(error.message);
             } finally {
