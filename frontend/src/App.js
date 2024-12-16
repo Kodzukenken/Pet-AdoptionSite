@@ -4,9 +4,11 @@ import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from '../src/components/footer';
 import Home from '../src/pages/home';
-import CatAdoption from './pages/CatAdoption'; 
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
+import CatAdoption from './pages/CatAdoption';
+import DogAdoption from './pages/DogAdoption';
+import Search from './pages/search';
 
 function App() {
     const currentPath = window.location.pathname;
@@ -24,6 +26,8 @@ function App() {
                       <Route path="/adoption-system" element={<Adopt />} />
                       <Route path="/blog" element={<Blog />} /> */}
                       <Route path="/cat-adoption" element={<CatAdoption />} /> {/* Fixed component usage */}
+                      <Route path="/dog-adoption" element={<DogAdoption />} />
+                      <Route path="/search" element={<Search />} />
                   </Routes>
               </div>
               <Footer />
