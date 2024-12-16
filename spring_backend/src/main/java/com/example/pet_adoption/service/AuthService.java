@@ -40,13 +40,13 @@ public class AuthService {
 
     // Check if email exis
     public boolean checkEmailExist(String email) {
-        return adopterRepository.existByEmail(email);
+        return adopterRepository.existsByEmail(email);
     }
 
     // Register a new user
     public void registerUser(SignupRequest request){
         // Check if email alrd regist
-        if (adopterRepository.existByEmail(request.getEmail())) {
+        if (adopterRepository.existsByEmail(request.getEmail())) {
             throw new IllegalArgumentException("Email already registered!");
         }
 

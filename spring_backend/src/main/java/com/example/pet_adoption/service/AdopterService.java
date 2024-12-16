@@ -55,10 +55,10 @@ public class AdopterService {
     }
 
     public boolean checkEmailExist(String email) {
-        // Create a query to search for the email in the "adopters" collection
+        // search for email in "adopters" 
         Query query = new Query(Criteria.where("email").is(email));
     
-        // Use MongoTemplate to check if any document matches the query
+        //MongoTemplate check if any doc match query
         return mongoTemplate.exists(query, Adopter.class);
     }
 
