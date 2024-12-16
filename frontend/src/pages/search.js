@@ -72,14 +72,14 @@ const SearchPage = () => {
         {typeFilter && 
         (<span className="filter-badge">
           Type: {typeFilter}
-          <button onCliclick={() => clearFilter("type")}>✕</button>
+          {/* <button onCliclick={() => clearFilter("type")}></button> */}
           </span>
         )}
 
         {statusFilter && 
         (<span className="filter-badge">
           Type: {statusFilter}
-          <button onCliclick={() => clearFilter("status")}>✕</button>
+          {/* <button onCliclick={() => clearFilter("status")}>✕</button> */}
           </span>
         )}
 

@@ -5,7 +5,7 @@ const petsData = [
       age: 2,
       breed: "Persian",
       type: "cat",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -14,7 +14,7 @@ const petsData = [
       age: 3,
       breed: "Siamese",
       type: "cat",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -23,7 +23,7 @@ const petsData = [
       age: 1,
       breed: "Maine Coon",
       type: "cat",
-      adoptionStatus: "processing",
+      status: "processing",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -32,7 +32,7 @@ const petsData = [
       age: 2,
       breed: "Golden Retriever",
       type: "dog",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -41,7 +41,7 @@ const petsData = [
       age: 4,
       breed: "German Shepherd",
       type: "dog",
-      adoptionStatus: "processing",
+      status: "processing",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -50,7 +50,7 @@ const petsData = [
       age: 3,
       breed: "Labrador",
       type: "dog",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -59,7 +59,7 @@ const petsData = [
       age: 5,
       breed: "Beagle",
       type: "dog",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -68,7 +68,7 @@ const petsData = [
       age: 5,
       breed: "American Shorthair",
       type: "cat",
-      adoptionStatus: "available",
+      status: "available",
       image: "https://via.placeholder.com/300",
     },
     {
@@ -77,7 +77,7 @@ const petsData = [
         age: 5,
         breed: "British Shorthair",
         type: "cat",
-        adoptionStatus: "available",
+        status: "available",
         image: "https://via.placeholder.com/300",
       },
       {
@@ -86,7 +86,7 @@ const petsData = [
         age: 5,
         breed: "Pug",
         type: "dog",
-        adoptionStatus: "available",
+        status: "available",
         image: "https://via.placeholder.com/300",
       },
   ];
