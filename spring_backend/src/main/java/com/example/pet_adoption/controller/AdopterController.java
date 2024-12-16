@@ -6,13 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.pet_adoption.dto.LoginRequest;
-import com.example.pet_adoption.dto.SignupRequest;
-import com.example.pet_adoption.dto.LoginResponse;
-import com.example.pet_adoption.dto.ForgotPasswordRequest;
-import com.example.pet_adoption.dto.ResetPasswordRequest;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 // import javax.validation.Valid;
@@ -51,28 +45,5 @@ public class AdopterController {
     public ResponseEntity<Void> deleteAdopter(@PathVariable ObjectId id) {
         adopterService.deleteAdopter(id);
         return ResponseEntity.noContent().build();
-    }
-        //account login functions & etc
-    @PutMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody @Valid SignupRequest adopterRequest){
-        adopterService.registerUser(adopterRequest);
-        return ResponseEntity.ok("User registered successfully!");
-    }
-
-        //make login & token generation
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest){
-      String token = adopterService.authenticateUser(loginRequest);
-      return ResponseEntity.ok(new LoginResponse(token));
-    }
-
-        //make mechanism, only check email valid then reenter pass
-    @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestBody @Valid ForgotPasswordRequest request){
-        boolean emailExists = adopterService.existByEmail(request.getEmail());
-        if (!emailExists) {
-            return ResponseEntity.badRequest().body("Email not registered!");
-        }
-        return ResponseEntity.ok("Email verified! You can now reset your password.");
-    }
+    };
 }

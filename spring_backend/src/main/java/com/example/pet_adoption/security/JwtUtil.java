@@ -15,12 +15,13 @@ public class JwtUtil {
     private final long EXPIRATION_TIME = 1000 * 60 * 60; 
 
     // make token
-    public String generateToken(String username) {
+    public String generateToken(String email, String role) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
+                .claim("role", role) // Add role to token
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SECRET_KEY) 
+                .signWith(SECRET_KEY)
                 .compact();
     }
 
@@ -38,12 +39,22 @@ public class JwtUtil {
     }
 
     // email from token
-    public String extractUsername(String token) {
+    public String extractEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }
+
+    // Extract role from token
+    public String extractRole(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("role", String.class);
     }
 }
