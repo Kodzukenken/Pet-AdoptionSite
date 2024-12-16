@@ -62,6 +62,15 @@ public class AdopterService {
         adopterRepository.deleteById(id);
     }
 
+    public boolean checkEmailExist(String email) {
+        // Create a query to search for the email in the "adopters" collection
+        Query query = new Query(Criteria.where("email").is(email));
+    
+        // Use MongoTemplate to check if any document matches the query
+        return mongoTemplate.exists(query, Adopter.class);
+    }
+    
+
     //regist
     public void registerUser(SignupRequest request){
         // check email

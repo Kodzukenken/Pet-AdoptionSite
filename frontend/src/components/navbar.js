@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "../styles/navbar.css";
+
 import {
     HOME,
     USERDASH,
     SEARCH,
+    LANDING_PAGE
 } from "../constants/routes";
-// import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
+import logo from "../assets/logo.png"; // Adjust the path if needed, e.g. "../public/images/logo.png";
 import logo from "../assets/logo.png"; // Adjust the path as needed
 
 export default function Navbar (currentPath) {
@@ -16,7 +18,8 @@ export default function Navbar (currentPath) {
     
     // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // // Function to toggle menu visibility
+    // const navigate = useNavigate();
+    // Function to toggle menu visibility
     // const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     // return (
