@@ -15,17 +15,19 @@ public class Adopter {
     private String email;
     private String address;
     private int age;
+    private String password;
     private String role;
 
     public Adopter() {}
 
-    public Adopter(ObjectId id, String name, String phone, String email, String address, int age, String role) {
+    public Adopter(ObjectId id, String name, String phone, String email, String address, int age, String password, String role) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.age = age;
+        this.password = password;
         this.role = role;
     }
 
@@ -75,6 +77,14 @@ public class Adopter {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {

@@ -13,6 +13,7 @@ import com.example.pet_adoption.dto.SignupRequest;
 import com.example.pet_adoption.dto.LoginRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.pet_adoption.SecurityConfig;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,19 @@ public class AdopterService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public AdopterService(
+        AdopterRepository adopterRepository,
+        MongoTemplate mongoTemplate,
+        PasswordEncoder passwordEncoder
+    ){
+        this.adopterRepository = adopterRepository;
+        this.mongoTemplate = mongoTemplate;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public List<Adopter> getAllAdopters() {
         return adopterRepository.findAll();
@@ -67,7 +81,7 @@ public class AdopterService {
             .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
         //validate pass (hashing)
-        if(!PasswordUtils.matches(loginRequest.getPassword(), adopter.getPassword())){
+        if(!passwordEncoder.matches(loginRequest.getPassword(), adopter.getPassword())){
             throw new RuntimeException("Invalid email or password");
         }
 

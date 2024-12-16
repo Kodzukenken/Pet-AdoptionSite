@@ -26,4 +26,6 @@ public interface AdopterRepository extends MongoRepository<Adopter, ObjectId> {
 
     boolean existByEmail(String email);
 
+    List<Adopter> findByEmail(String email);
+
 }
