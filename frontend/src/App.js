@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import CatAdoption from './pages/CatAdoption';
 import DogAdoption from './pages/DogAdoption';
 import Search from './pages/search';
+import UserAdoptionStatus from './pages/userAdoptionStatus';
 
 function App() {
     const currentPath = window.location.pathname;
@@ -28,6 +29,7 @@ function App() {
                       <Route path="/cat-adoption" element={<CatAdoption />} /> {/* Fixed component usage */}
                       <Route path="/dog-adoption" element={<DogAdoption />} />
                       <Route path="/search" element={<Search />} />
+                      <Route path="/user-adoption-status" element={<UserAdoptionStatus />} />
                   </Routes>
               </div>
               <Footer />

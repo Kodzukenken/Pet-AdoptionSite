@@ -1,0 +1,57 @@
+.user-adoption-status {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #e7f5e5; 
+    min-height: 100vh;
+  }
+  
+  h1 {
+    color: #4a148c;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #51a5ff; 
+    color: white;
+    font-weight: bold;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .status-accepted {
+    color: green;
+  }
+  
+  .status-rejected {
+    color: red;
+  }
+  
+  .status-processing {
+    color: orange;
+  }
+  
+  p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
