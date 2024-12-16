@@ -11,6 +11,14 @@ const SearchPage = () => {
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
 
+  const clearFilter = (filterType) => {
+    if (filterType === "type") {
+      setTypeFilter("");
+    }
+    if (filterType === "status") {
+      setStatusFilter("");
+    }
+  }
   // Filtered Pets List
   const filteredPets = petsData.filter((pet) => {
     return (
@@ -22,13 +30,15 @@ const SearchPage = () => {
     );
   });
 
-  // Slider Settings
   const sliderSettings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <button className="slick-prev">{"<"}</button>,
+    nextArrow: <button className="slick-next">{">"}</button>,
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
@@ -58,28 +68,44 @@ const SearchPage = () => {
         <button onClick={() => setStatusFilter("processing")}>Processing</button>
       </div>
 
+      <div className="active-filters">
+        {typeFilter && 
+        (<span className="filter-badge">
+          Type: {typeFilter}
+          <button onCliclick={() => clearFilter("type")}>✕</button>
+          </span>
+        )}
+
+        {statusFilter && 
+        (<span className="filter-badge">
+          Type: {statusFilter}
+          <button onCliclick={() => clearFilter("status")}>✕</button>
+          </span>
+        )}
+
+      </div>
+
       {/* Search Results */}
-      {filteredPets.length > 0 && (
-        <div className="slider-section">
-          <h2>Search Results</h2>
-          <Slider {...sliderSettings}>
-            {filteredPets.map((pet) => (
-              <PetPreviewCard
-                key={pet.id}
-                name={pet.name}
-                type={pet.type}
-                age={pet.age}
-                breed={pet.breed}
-                status={pet.status}
-                image={pet.image}
-              />
-            ))}
-          </Slider>
+      {filteredPets.length > 0 ? (
+        <div className="search-result">
+          {filteredPets.map((pet) => (
+            <PetPreviewCard
+              key={pet.id}
+              name={pet.name}
+              type={pet.type}
+              age={pet.age}
+              breed={pet.breed}
+              status={pet.status}
+              image={pet.image}
+            />
+          ))}
         </div>
+      ) : (
+        <p>No pets found. Adjust your filters or try another search term.</p>
       )}
 
       {/* Cats Section */}
-      <div className="slider-section">
+      {/* <div className="slider-section">
         <h2>Adoptable Cats</h2>
         <Slider {...sliderSettings}>
           {petsData
@@ -96,10 +122,10 @@ const SearchPage = () => {
               />
             ))}
         </Slider>
-      </div>
+      </div> */}
 
       {/* Dogs Section */}
-      <div className="slider-section">
+      {/* <div className="slider-section">
         <h2>Adoptable Dogs</h2>
         <Slider {...sliderSettings}>
           {petsData
@@ -116,7 +142,7 @@ const SearchPage = () => {
               />
             ))}
         </Slider>
-      </div>
+      </div> */}
     </div>
   );
 };
