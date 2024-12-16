@@ -24,6 +24,6 @@ public interface AdopterRepository extends MongoRepository<Adopter, ObjectId> {
     // Delete adopters by name
     void deleteByName(String name);
 
-    List<Adopter> findByEmail(String email);
+    boolean existByEmail(String email);
 
 }

@@ -6,9 +6,13 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.pet_adoption.dto.LoginRequest;
+import com.example.pet_adoption.dto.SignupRequest;
+import com.example.pet_adoption.dto.LoginResponse;
 
 import java.util.List;
 import java.util.Optional;
+// import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/adopters")
@@ -47,7 +51,7 @@ public class AdopterController {
     }
         //account login functions & etc
     @PutMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody @Valid AdopterSignupRequest adopterRequest){
+    public ResponseEntity<?> signup(@RequestBody @Valid SignupRequest adopterRequest){
         adopterService.registerUser(adopterRequest);
         return ResponseEntity.ok("User registered successfully!");
     }
