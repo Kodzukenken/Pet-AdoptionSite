@@ -16,5 +16,5 @@ public interface PetRepository extends MongoRepository<Pet, ObjectId> {
 
     List<Pet> findByTypeId(ObjectId typeId);
 
-    List<ObjectId> getAvailablePets();
+    List<Pet> findByStatus(String status);
 }

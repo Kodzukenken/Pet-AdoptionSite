@@ -29,13 +29,13 @@ public class PetService {
     }
     
     public Pet createPet(Pet pet) {
-        Pet savedPet = petRepository.save(pet);
-    
-        List<ObjectId> availablePets = petRepository.getAvailablePets();
-        if (!availablePets.contains(savedPet.getId())) {
-            availablePets.add(savedPet.getId());
+
+        if (pet.getStatus().equals("null")) {
+            pet.setStatus("Available");
         }
-    
+
+        Pet savedPet = petRepository.save(pet);
+
         return savedPet;
     }
     
@@ -51,7 +51,10 @@ public class PetService {
                     return new PetDTO(
                             petType,
                             pet.getAge(),
-                            pet.getPath() //img path
+                            pet.getPath(),
+                            pet.getName(),
+                            pet.getBreed(),
+                            pet.getStatus()
                     );
                 })
                 .collect(Collectors.toList());

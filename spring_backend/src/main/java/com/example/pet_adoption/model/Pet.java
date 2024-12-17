@@ -11,6 +11,7 @@ public class Pet {
     private ObjectId typeId;
     private int age;
     private String name;
+    private String breed;
     // private String vaccine;
     // private String careNotes;
     private String path;  //path to img
