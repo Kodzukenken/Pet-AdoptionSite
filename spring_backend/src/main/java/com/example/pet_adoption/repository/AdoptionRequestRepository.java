@@ -16,8 +16,6 @@ public interface AdoptionRequestRepository extends MongoRepository <AdoptionRequ
 
     List<AdoptionRequest> findByPetName(String petName);
 
-    List<AdoptionRequest> findByShelter(String shelterId);
-
     List<AdoptionRequest> findByAdopterName(String adopterName);
 
     List<AdoptionRequest> findByDate(java.util.Date date);
