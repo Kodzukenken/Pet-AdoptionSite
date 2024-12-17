@@ -60,27 +60,34 @@ const PetList = () => {
     return input.trim();
   }
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload on form submission
   
     const formData = new FormData();
-    formData.append("name", sanitizeInput(name));
-    formData.append("typeId", typeId);
-    formData.append("breed", sanitizeInput(breed));
-    formData.append("age", sanitizeInput(age));
-    if (image) formData.append("image", image);
+    formData.append("name", newPet.name);
+    formData.append("typeId", newPet.typeId);
+    formData.append("breed", newPet.breed);
+    formData.append("age", newPet.age);
+    formData.append("image", newPet.image);
   
     try {
-      setIsLoading(true);
+      setIsLoading(true); // Optional: Show loading state
+  
+      // Use the API call from your services.js file
       const response = await createNewPet(formData);
-      setPets((prevPets) => [...prevPets, response]); // Add new pet to state
-      alert("Pet created successfully!");
+  
+      // Update pet list state
+      setPets([...pets, response]);
+  
+      alert("Pet added successfully!");
+      setNewPet({ name: "", typeId: "", breed: "", age: "", image: null }); // Reset form state
     } catch (error) {
       console.error("Error creating pet:", error);
       alert("Failed to create pet.");
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // End loading state
     }
   };
+  
   
 
   // Edit a pet
@@ -179,10 +186,14 @@ const PetList = () => {
             name="name"
             placeholder="Name"
             value={newPet.name}
-            onChange={handleSubmit}
+            onChange={(e) => setNewPet({ ...newPet, name: e.target.value })}
             required
           />
-          <select name="typeId" value={newPet.typeId} onChange={handleInputChange}>
+          <select
+            name="typeId"
+            value={newPet.typeId}
+            onChange={(e) => setNewPet({ ...newPet, typeId: e.target.value })}
+          >
             <option value={1}>Dog</option>
             <option value={2}>Cat</option>
           </select>
@@ -191,7 +202,7 @@ const PetList = () => {
             name="breed"
             placeholder="Breed"
             value={newPet.breed}
-            onChange={handleInputChange}
+            onChange={(e) => setNewPet({ ...newPet, breed: e.target.value })}
             required
           />
           <input
@@ -199,18 +210,19 @@ const PetList = () => {
             name="age"
             placeholder="Age"
             value={newPet.age}
-            onChange={handleInputChange}
+            onChange={(e) => setNewPet({ ...newPet, age: e.target.value })}
             required
           />
           <input
             type="file"
             name="image"
             accept="image/*"
-            onChange={handleInputChange}
+            onChange={(e) => setNewPet({ ...newPet, image: e.target.files[0] })}
             required
           />
-          <button onClick={(e) => handleSubmit(e, pets)}>Add Pet</button>
+          <button type="submit">Add Pet</button>
         </form>
+
 
         {/* Pets Table */}
         {isLoading ? (

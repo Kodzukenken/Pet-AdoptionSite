@@ -162,18 +162,21 @@ const fetchAllAdoptionRequest = async () =>{
   }
 };
 
- const createNewPet = async (data) => {
+const createNewPet = async (data) => {
   try {
-    const response = await axiosInstance.post(API_POST_NEW_PET, data);
+    const response = await axiosInstance.post(API_POST_NEW_PET, data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     return response.data;
   } catch (error) {
-    handleRequestError(error, "Error creating new pet");
+    throw error;
   }
 };
 
+
 const updatePet = async (id, data) => {
   try {
-    const response = await axiosInstance.put(`${API_UPDATE_PET}/${id}`, data);
+    const response = await axiosInstance.put(API_UPDATE_PET(id), data);
     return response.data;
   } catch (error) {
     handleRequestError(error, "Error updating pet");
