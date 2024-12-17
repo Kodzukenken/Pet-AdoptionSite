@@ -25,11 +25,7 @@ public class AdoptionRequest {
 
     }
 
-<<<<<<< Updated upstream
-    public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Shelter shelter, Category petCategory, String petId, String petName) {
-=======
     public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Category petCategory, String petId, String petName) {
->>>>>>> Stashed changes
         this.id = id;
         this.adopterName = adopterName;
         this.date = date;
@@ -77,14 +73,6 @@ public class AdoptionRequest {
 
     public void setPetCategory(Category petCategory) {
         this.petCategory = petCategory;
-    }
-
-    public String getPetId() {
-        return petId;
-    }
-
-    public void setPetId(String petId) {
-        this.petId = petId;
     }
 
     public String getPetId() {
