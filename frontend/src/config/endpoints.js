@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:8080/api";
+export const API_URL = "http://localhost:8081/api";
 
 //TODO: add URL & check api on back
 
@@ -34,33 +34,33 @@ const API_POST_NEW_ADOPTION_REQUESTS = `${API_URL}${POST_NEW_ADOPTREQ}`
 const API_GET_ALL_CATEGORIES = `${API_URL}${GET_ALL_CATEGORIES}`;
 const API_GET_ALL_PETS = `${API_URL}${GET_ALL_PETS}`;
 
-const PETS_API = `${API_URL}/pets`;
-const CATEG_API = `${API_URL}/categories`;
-const ADOPTER_API = `${API_URL}/adopters`;
-const ADOPTREQ_API = `${API_URL}/adoption-requests`;
+// const PETS_API = `${API_URL}/pets`;
+// const CATEG_API = `${API_URL}/categories`;
+// const ADOPTER_API = `${API_URL}/adopters`;
+// const ADOPTREQ_API = `${API_URL}/adoption-requests`;
 
 
 // ONLY FOR ADMIN ----------------------------------------------
 // adoption request
-const GET_ALL_ADOPTREQ = "/adoption-requests/";
-const UPDATE_ADOPTREQ = "/update-adoptreq";
-const REMOVE_ADOPTREQ = "/remove-adoptreq";
+const GET_ALL_ADOPTREQ = "/admin/adoption-requests";
+const UPDATE_ADOPTREQ = "/admin/update-adoptreq";
+const REMOVE_ADOPTREQ = "/admin/remove-adoptreq";
 
 const API_GET_ALL_ADOPTREQ = `${API_URL}${GET_ALL_ADOPTREQ}`;
 const API_UPDATE_ADOPTREQ = `${API_URL}${UPDATE_ADOPTREQ}`;
 const API_REMOVE_ADOPTREQ = `${API_URL}${REMOVE_ADOPTREQ}`;
 
 //Adopter
-const GET_ALL_ADOPTERS = "/adopters";
-const REMOVE_ADOPTER = "/remove-adopter";
+const GET_ALL_ADOPTERS = "/admin/adopters";
+const REMOVE_ADOPTER = "/admin/remove-adopter";
 
 const API_GET_ALL_ADOPTERS = `${API_URL}${GET_ALL_ADOPTERS}`;
 const API_REMOVE_ADOPTER = `${API_URL}${REMOVE_ADOPTER}`;
 
 //Pets
-const POST_NEW_PET = "/pets";
-const UPDATE_PET = "/update";
-const REMOVE_PET = "/remove";
+const POST_NEW_PET = "/admin/pets";
+const UPDATE_PET = "/admin/update-pet";
+const REMOVE_PET = "/admin/remove-pets";
 
 const API_POST_NEW_PET = `${API_URL}${POST_NEW_PET}`;
 const API_UPDATE_PET = `${API_URL}${UPDATE_PET}`;

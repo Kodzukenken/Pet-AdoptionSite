@@ -4,8 +4,7 @@ import './index.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Footer from '../src/components/footer';
 import Home from '../src/pages/home';
-import CreateAccount from './pages/CreateAccount';
-import Login from './pages/Login';
+import LandingPage from './pages/landing-page';
 import CatAdoption from './pages/CatAdoption';
 import DogAdoption from './pages/DogAdoption';
 import Search from './pages/search';
@@ -14,6 +13,20 @@ import PetList from "./pages/admin/PetList";
 import UserList from "./pages/admin/UserList";
 import AdoptionRequests from "./pages/admin/AdoptionRequests";
 import userAdoptionStatus from './pages/userAdoptionStatus';
+
+import{
+  HOME,
+  USERDASH,
+  SEARCH,
+  LANDING_PAGE,
+  CATS_PAGE,
+  DOGS_PAGE,
+  PETLIST,
+  USERLIST,
+  ADOPTREQLIST,
+  USERADOPTSTAT,
+  adminRoutes
+} from './constants/routes';
 
 function App() {
   return (
@@ -27,24 +40,22 @@ function App() {
 function AppContent() {
   const location = useLocation();
 
-  // Define routes where the Footer should not be displayed
-  const adminRoutes = ["/admin", "/admin/pets", "/admin/users", "/admin/adoption-requests"];
-
+// Routes defined in /constants/
   return (
     <div className="App">
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path='/create-account' element={<CreateAccount />} />
-          <Route path="/cat-adoption" element={<CatAdoption />} />
-          <Route path="/dog-adoption" element={<DogAdoption />} />
-          <Route path="/search" element={<Search />} />
+          <Route path={HOME} element={<Home />} />
+          <Route path={LANDING_PAGE} element={<LandingPage />} />
+          <Route path={CATS_PAGE} element={<CatAdoption />} />
+          <Route path={DOGS_PAGE} element={<DogAdoption />} />
+          <Route path={SEARCH} element={<Search />} />
+
           {/* <Route path="/admin" element={<AdminDashboard />} /> */}
-          <Route path="/admin/pets" element={<PetList />} />
-          <Route path="/admin/users" element={<UserList />} />
-          <Route path="/admin/adoption-requests" element={<AdoptionRequests />} />
-          <Route path="//user-adoption-status" element={<userAdoptionStatus />} />
+          <Route path={PETLIST} element={<PetList />} />
+          <Route path={USERLIST}element={<UserList />} />
+          <Route path={ADOPTREQLIST} element={<AdoptionRequests />} />
+          <Route path={USERADOPTSTAT}element={<userAdoptionStatus />} />
         </Routes>
       </div>
       {/* Conditionally render the Footer */}

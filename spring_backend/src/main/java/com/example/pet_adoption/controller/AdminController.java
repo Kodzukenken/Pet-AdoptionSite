@@ -41,7 +41,7 @@ public class AdminController {
         return adminService.fetchAllAdopters();
     }
 
-     @DeleteMapping("/adopters/{id}")
+     @DeleteMapping("/remove-adopter/{id}")
     public ResponseEntity<Void> deleteAdopter(@PathVariable ObjectId id) {
         adminService.deleteAdopter(id);
         return ResponseEntity.noContent().build();
@@ -57,12 +57,12 @@ public class AdminController {
         return adminService.postNewPet(pet);
     }
 
-    @PutMapping("/pets/update-pet/{id}")
+    @PutMapping("/update-pet/{id}")
     public Pet updatePet(@PathVariable ObjectId id, @RequestBody Pet pet){
         return adminService.updatePet(id, pet);
     }
 
-    @DeleteMapping("/pets/{id}")
+    @DeleteMapping("/remove-pets/{id}")
     public ResponseEntity<Void> removePet(@PathVariable ObjectId id){
         adminService.removePet(id);
         return ResponseEntity.noContent().build();
@@ -73,12 +73,12 @@ public class AdminController {
         return adminService.fetchAllAdoptionRequests();
     }
 
-    @PutMapping("/adoption-request/{id}")
+    @PutMapping("/update-adoptreq/{id}")
     public AdoptionRequest updateAdoptionRequest(@PathVariable ObjectId id, @RequestBody AdoptionRequest adoptionRequest){
         return adminService.updateAdoptionRequest(id, adoptionRequest);
     }
 
-    @DeleteMapping("/adoption-request/{id}")
+    @DeleteMapping("/remove-adoptreq/{id}")
     public ResponseEntity<Void> deleteAdoptionRequest(@PathVariable ObjectId id){
         adminService.deleteAdoptReq(id);
         return ResponseEntity.noContent().build();

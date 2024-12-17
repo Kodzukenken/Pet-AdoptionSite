@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import adoptionRequests from "../../data/adoptionRequests";
 import Sidebar from "../../components/admin/Sidebar";
+import {
+  updateAdoptionRequest
+} from "../../services";
 import "../../styles/adminDashboard.css";
 
 const AdoptionRequests = () => {

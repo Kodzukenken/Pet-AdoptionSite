@@ -120,7 +120,7 @@ const fetchAllAdoptionRequest = async () =>{
   } catch (error){
     handleRequestError(error, "Error fetching adoption request");
   }
-}
+};
 
  const createAdoptionRequest = async (data) => {
   try {

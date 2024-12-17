@@ -59,7 +59,6 @@ public class AuthService {
             null, 
             request.getEmail(), 
             request.getName(), 
-            request.getPhoneNum(), 
             request.getAddress(), 
             encryptPassword, 
             defaultRole,
