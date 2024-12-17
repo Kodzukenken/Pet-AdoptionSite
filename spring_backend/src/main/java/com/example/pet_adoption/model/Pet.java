@@ -22,12 +22,11 @@ public class Pet {
     }
 
     // Constructor with all fields
-    public Pet(ObjectId id, ObjectId typeId, int age, String path, String status, String name, String breed) {
+    public Pet(ObjectId id, ObjectId typeId, int age, String path, String status, String name) {
         // this.vaccine = vaccine;
         this.path = path;
         this.status = status;
         this.name = name;
-        this.breed = breed;
     }
 
     // Getters and Setters
@@ -47,13 +46,6 @@ public class Pet {
         this.typeId = typeId;
     }
 
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
 
 
     public int getAge() {
@@ -87,6 +79,14 @@ public class Pet {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
 }
