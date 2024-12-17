@@ -7,7 +7,7 @@ const mockRequests = [
   { id: 3, petName: "Luna", requesterName: "John Doe", status: "Rejected" },
 ];
 
-const UserAdoptionStatus = () => {
+const userAdoptionStatus = () => {
   const [adoptionRequests, setAdoptionRequests] = useState([]);
   const userName = "John Doe"; // Replace with user context/login data
 
@@ -57,4 +57,4 @@ const UserAdoptionStatus = () => {
   );
 };
 
-export default UserAdoptionStatus;
+export default userAdoptionStatus;

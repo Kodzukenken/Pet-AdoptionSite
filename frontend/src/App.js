@@ -13,7 +13,7 @@ import Search from './pages/search';
 import PetList from "./pages/admin/PetList";
 import UserList from "./pages/admin/UserList";
 import AdoptionRequests from "./pages/admin/AdoptionRequests";
-import UserAdoptionStatus from './pages/UserAdoptionStatus';
+import userAdoptionStatus from './pages/userAdoptionStatus';
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function AppContent() {
           <Route path="/admin/pets" element={<PetList />} />
           <Route path="/admin/users" element={<UserList />} />
           <Route path="/admin/adoption-requests" element={<AdoptionRequests />} />
-          <Route path="//user-adoption-status" element={<UserAdoptionStatus />} />
+          <Route path="//user-adoption-status" element={<userAdoptionStatus />} />
         </Routes>
       </div>
       {/* Conditionally render the Footer */}
