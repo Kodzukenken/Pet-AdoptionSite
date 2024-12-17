@@ -8,18 +8,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PetRepository extends MongoRepository <Pet, ObjectId>{
+public interface PetRepository extends MongoRepository<Pet, ObjectId> {
 
     List<Pet> findByName(String name);
 
     List<Pet> findById(String id);
 
     // pet will have shelter's id
-    List<Pet> findByShelter(String shelter_id);
+    List<Pet> findByShelterId(ObjectId shelterId);
 
-    List<Pet> findByVaccinated(boolean isVaccinated);
+    List<Pet> findByVaccine(String vaccine);
 
-    List<Pet> findByCareNoteContaining(String careNote);
+    List<Pet> findByCareNotesContaining(String careNotes);
 
-    List<Pet> findByType(String type);
-} 
+    List<Pet> findByTypeId(ObjectId typeId);
+}

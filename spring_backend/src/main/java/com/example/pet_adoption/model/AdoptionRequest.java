@@ -21,19 +21,21 @@ public class AdoptionRequest {
     @DBRef
     private Category petCategory;
 
+    private String petId; //property 'pet' not found
     private String petName;
 
     public AdoptionRequest(){
 
     }
 
-    public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Shelter shelter, Category petCategory, String petName) {
+    public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Shelter shelter, Category petCategory, String petId, String petName) {
         this.id = id;
         this.adopterName = adopterName;
         this.date = date;
         this.status = status;
         this.shelter = shelter;
         this.petCategory = petCategory;
+        this.petId = petId;
         this.petName = petName;
     }
 
@@ -83,6 +85,14 @@ public class AdoptionRequest {
 
     public Shelter getShelter() {
         return shelter;
+    }
+
+    public String getPetId() {
+        return petId;
+    }
+
+    public void setPetId(String petId) {
+        this.petId = petId;
     }
 
     public String getPetName() {

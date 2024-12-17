@@ -12,11 +12,13 @@ public interface AdoptionRequestRepository extends MongoRepository <AdoptionRequ
     
     List<AdoptionRequest> findById(String id);
 
-    List<AdoptionRequest> findByPet(String petId);
+    List<AdoptionRequest> findByPetId(String petId);
+
+    List<AdoptionRequest> findByPetName(String petName);
 
     List<AdoptionRequest> findByShelter(String shelterId);
 
-    List<AdoptionRequest> findByAdopter(String adopterId);
+    List<AdoptionRequest> findByAdopterName(String adopterName);
 
     List<AdoptionRequest> findByDate(java.util.Date date);
 

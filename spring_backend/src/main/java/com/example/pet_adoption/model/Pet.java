@@ -11,6 +11,7 @@ public class Pet {
     private ObjectId typeId;
     private ObjectId shelterId;
     private int age;
+    private String name;
     private String vaccine;
     private String careNotes;
     private String path;  //path to img
@@ -21,7 +22,7 @@ public class Pet {
     }
 
     // Constructor with all fields
-    public Pet(ObjectId id, ObjectId typeId, ObjectId shelterId, int age, String vaccine, String careNotes, String path, String status) {
+    public Pet(ObjectId id, ObjectId typeId, ObjectId shelterId, int age, String vaccine, String careNotes, String path, String status, String name) {
         this.id = id;
         this.typeId = typeId;
         this.shelterId = shelterId;
@@ -30,6 +31,7 @@ public class Pet {
         this.careNotes = careNotes;
         this.path = path;
         this.status = status;
+        this.name = name;
     }
 
     // Getters and Setters
@@ -95,6 +97,14 @@ public class Pet {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

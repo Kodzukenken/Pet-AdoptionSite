@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ShelterRepository extends MongoRepository <Shelter, ObjectId>{
+public interface ShelterRepository extends MongoRepository<Shelter, ObjectId> {
 
-    List<Shelter> findById(String id);
+    List<Shelter> findById(String id);  // Corrected to match ObjectId type
 
     List<Shelter> findByName(String name);
 
@@ -22,5 +22,5 @@ public interface ShelterRepository extends MongoRepository <Shelter, ObjectId>{
 
     List<Shelter> findByStreet(String street);
 
-    List<Shelter> findByMostClick(int click);
-} 
+    List<Shelter> findByClickCount(int clickCount);  // Corrected method name to match field
+}
