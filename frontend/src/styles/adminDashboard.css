@@ -378,3 +378,64 @@ form button:hover {
   background-color: #d32f2f;
 }
 
+.create-form input,
+.create-form select,
+.create-form button {
+  width: 100%; 
+  padding: 10px; 
+  margin: 10px 0; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-sizing: border-box; 
+  font-size: 16px;
+}
+
+.create-form select {
+  appearance: none; 
+  background-color: #fff; 
+  cursor: pointer;
+}
+
+.create-form button {
+  background-color: #4caf50; 
+  color: white; 
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px; 
+  padding: 8px 12px; 
+  border-radius: 5px; 
+  width: auto; 
+}
+
+.create-form button:hover {
+  background-color: #45a049; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
