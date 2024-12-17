@@ -67,15 +67,17 @@ export default function Landing() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        formData = {...formData,
+
+        setFormData((prevData) => ({
+            ...prevData,
             name: sanitizeInput(name),
             age: validateAge(age),
             email: validateEmail(email),
             address: sanitizeInputParagraph(address),
             password: password
-        };
-        setFormData(formData); 
+        }));
 
+        //validation
         if (!validateEmail(email.trim())) {
             setErrorMessage("Invalid email format");
             return;
@@ -97,6 +99,7 @@ export default function Landing() {
             return;
         }
 
+        //regist
         try {
             setIsLoading(true);
             await register(formData);

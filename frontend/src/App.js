@@ -13,6 +13,7 @@ import PetList from "./pages/admin/PetList";
 import UserList from "./pages/admin/UserList";
 import AdoptionRequests from "./pages/admin/AdoptionRequests";
 import userAdoptionStatus from './pages/userAdoptionStatus';
+// import {U}
 
 import{
   HOME,
@@ -27,6 +28,7 @@ import{
   USERADOPTSTAT,
   adminRoutes
 } from './constants/routes';
+import Navbar from './components/navbar';
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function AppContent() {
   return (
     <div className="App">
       <div className="container">
+        {!adminRoutes.includes(location.pathname) && <Navbar />}
         <Routes>
           <Route path={HOME} element={<Home />} />
           <Route path={LANDING_PAGE} element={<LandingPage />} />

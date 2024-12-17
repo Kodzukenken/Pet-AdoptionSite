@@ -9,8 +9,8 @@ import {
 } from "../constants/routes";
 
 import logo from "../assets/logo.png";
-import { useUser } from "../context/UserContext"; // Ensure this hook is defined
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Assuming you use MUI icons
+import { useUser } from "../context/user-context"; // Ensure this hook is defined
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // Assuming you use MUI icons
 
 export default function Navbar({ currentPath }) {
     // State to manage menu visibility
@@ -75,8 +75,9 @@ export default function Navbar({ currentPath }) {
                                     currentPath === USERDASH ? "active" : ""
                                 }`}
                             >
-                                <AccountCircleIcon className="nav__icon" />
+                                {/* <a className="nav__icon" />
                                 My Profile
+                                </a> */}
                             </NavLink>
                             <button
                                 onClick={() => {
