@@ -1,141 +1,223 @@
-import axios from "axios";
 import axiosInstance from "../config/axiosConfig";
 import {
-  API_LOGIN,
   API_SIGNUP,
+  API_LOGIN,
+  // API_LOGOUT,
+  API_PROFILE_DATA,
+  API_PUT_RESET_PASSWORD,
   API_POST_FORGOT_PASSWORD,
   API_PUT_RESET_PASSWORD,
-  API_PROFILE_DATA,
   API_GET_ADOPTION_REQUESTS,
-  API_CREATE_ADOPTION_REQUEST,
+  API_POST_NEW_ADOPTION_REQUESTS,
+  API_GET_ALL_CATEGORIES,
   API_GET_ALL_PETS,
-
+  API_POST_NEW_PET,
+  API_GET_ALL_ADOPTREQ,
+  API_UPDATE_ADOPTREQ,
+  API_REMOVE_ADOPTREQ,
+  API_GET_ALL_ADOPTERS,
+  API_REMOVE_ADOPTER,
+  API_UPDATE_PET,
+  API_REMOVE_PET,
 } from "../src/config/endpoints";
 
-const login = async (data) => {
+// Helper function for error handling
+const handleRequestError = (error, customMessage = "An error occurred") => {
+  console.error(customMessage, error);
+  if (error.response) {
+    throw new Error(error.response.data.message || customMessage);
+  } else {
+    throw new Error("Network error");
+  }
+};
+
+// User Authentication
+ const login = async (data) => {
   try {
     const response = await axiosInstance.post(API_LOGIN, data);
-    const token = response.data.token;
-    const userId = response.data.user.id;
+    const { token, user } = response.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
+    localStorage.setItem("userId", user.id);
     return response.data;
   } catch (error) {
-    console.error("Error logging in: ", error);
-    if (error.response) {
-      throw new Error(
-      error.response.data.message[0].msg || "Incorrrect email or password"
-        );
-    } else {
-      throw new Error("Network error");
-    }
+    handleRequestError(error, "Error logging in");
   }
 };
 
-const register = async (data) => {
-  try{
+ const register = async (data) => {
+  try {
     const response = await axiosInstance.post(API_SIGNUP, data);
-    const token = response.data.token;
-    const userId = response.data.user.id;
+    const { token, user } = response.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
+    localStorage.setItem("userId", user.id);
     return response.data;
   } catch (error) {
-    console.error("Error signing up: ", error);
-    if (error.response) {
-      throw new Error(error.response.data.message[0].msg);
-    } else {
-      throw new Error("Network error");
-    }
+    handleRequestError(error, "Error signing up");
   }
-}
+};
 
-const postForgotPassword = async (email) => {
-  const data = { email: email };
+ const logout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+};
 
+// Password Management
+ const postForgotPassword = async (email) => {
   try {
-    const res = await axiosInstance.post(API_POST_FORGOT_PASSWORD, data);
-
-    // check email
-    if (res.status === 200) {
-      return res; 
-    } else {
-      throw new Error("Email not registered");
-    }
+    const data = { email };
+    const response = await axiosInstance.post(API_POST_FORGOT_PASSWORD, data);
+    return response.data;
   } catch (error) {
-    console.error("Error in forgot password: ", error);
-    throw error || "An error occurred while verifying the email.";
+    handleRequestError(error, "Error sending forgot password email");
   }
 };
 
-
-// no need send email
-const putResetPassword = async ({ email, password }) => {
-  const data = { email, password };
+ const putResetPassword = async ({ email, password }) => {
   try {
-    const res = await axiosInstance.put(API_PUT_RESET_PASSWORD, data);
-    return res;
+    const data = { email, password };
+    const response = await axiosInstance.put(API_PUT_RESET_PASSWORD, data);
+    return response.data;
   } catch (error) {
-    console.error("Error resetting password: ", error);
-    throw error;
+    handleRequestError(error, "Error resetting password");
   }
 };
 
-// GET Profile data
-const fetchProfileData = async (data) => {
-  try{
-    const res = await axiosInstance.post(API_PROFILE_DATA, data);
-    return res.data;
-  } catch (error){
-    console.error("Error fetching profile data:", error);
-    throw error;
+// Profile Management
+ const fetchProfileData = async () => {
+  try {
+    const response = await axiosInstance.get(API_PROFILE_DATA);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error fetching profile data");
   }
 };
 
-// PUT profile data
-const putProfileData = async (data) => {
-  try{
-    const response = await axiosInstance.put(API_PORFILE_DATA, data);
-    return response;
-  }catch (error){
-    console.error("Error sending profile data:", error);
-    throw error;
+//for updating user info
+ const putProfileData = async (data) => {
+  try {
+    const response = await axiosInstance.put(API_PROFILE_DATA, data);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error updating profile data");
   }
 };
 
-// get user adoption request
-const fetchAdoptionRequest = async (filters = {}) => {
-  try{
+// Adoption Requests
+ const fetchAdoptionRequests = async (filters = {}) => {
+  try {
     const response = await axiosInstance.get(API_GET_ADOPTION_REQUESTS, {
       params: filters,
     });
     return response.data;
-  } catch (error){
-    console.error("Error fetching adoption requests:", error);
-    throw error;
+  } catch (error) {
+    handleRequestError(error, "Error fetching adoption requests");
   }
 };
 
-
-const createAdoptionRequest = async (data) => {
+const fetchAllAdoptionRequest = async () =>{
   try{
-    const response = await axiosInstance.post(API_CREATE_ADOPTION_REQUEST, data);
+    const reponse = await axiosInstance.get(API_GET_ALL_ADOPTREQ);
     return response.data;
   } catch (error){
-    console.error("Error creating adoption request:", error);
-    throw error;
-  }
-};
-
-const fetchAllPets = async (data) =>{
-  try{
-    const response = await axiosInstance.get(API_GET_ALL_PETS, data);
-    return response.data;
-  } catch (error){
-    console.error("Error fetching pets:", error);
-    throw error;
+    handleRequestError(error, "Error fetching adoption request");
   }
 }
+
+ const createAdoptionRequest = async (data) => {
+  try {
+    const response = await axiosInstance.post(
+      API_POST_NEW_ADOPTION_REQUESTS,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error creating adoption request");
+  }
+};
+
+ const updateAdoptionRequest = async (id, data) => {
+  try {
+    const response = await axiosInstance.put(`${API_UPDATE_ADOPTREQ}/${id}`, data);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error updating adoption request");
+  }
+};
+
+ const deleteAdoptionRequest = async (id) => {
+  try {
+    const response = await axiosInstance.delete(`${API_REMOVE_ADOPTREQ}/${id}`);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error deleting adoption request");
+  }
+};
+
+// Pets Management
+ const fetchAllPets = async () => {
+  try {
+    const response = await axiosInstance.get(API_GET_ALL_PETS);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error fetching pets");
+  }
+};
+
+ const createNewPet = async (data) => {
+  try {
+    const response = await axiosInstance.post(API_POST_NEW_PET, data);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error creating new pet");
+  }
+};
+
+ const updatePet = async (id, data) => {
+  try {
+    const response = await axiosInstance.put(API_UPDATE_PET, data);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error updating pet");
+  }
+};
+
+ const deletePet = async (id) => {
+  try {
+    const response = await axiosInstance.delete(API_REMOVE_PET);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error deleting pet");
+  }
+};
+
+// Categories
+ const fetchAllCategories = async () => {
+  try {
+    const response = await axiosInstance.get(API_GET_ALL_CATEGORIES);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error fetching categories");
+  }
+};
+
+// Adopters Management
+ const fetchAllAdopters = async () => {
+  try {
+    const response = await axiosInstance.get(API_GET_ALL_ADOPTERS);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error fetching adopters");
+  }
+};
+
+ const deleteAdopter = async (id) => {
+  try {
+    const response = await axiosInstance.delete(API_REMOVE_ADOPTER, id);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error, "Error deleting adopter");
+  }
+};
 
 
 export {
@@ -145,6 +227,16 @@ export {
   putProfileData,
   postForgotPassword,
   putResetPassword,
-  fetchAdoptionRequest,
-
-}
+  fetchAdoptionRequests,
+  fetchAllAdoptionRequest,
+  createAdoptionRequest,
+  deleteAdoptionRequest,
+  updateAdoptionRequest,
+  fetchAllPets,
+  createNewPet,
+  updatePet,
+  deletePet,
+  fetchAllCategories,
+  fetchAllAdopters,
+  deleteAdopter
+};

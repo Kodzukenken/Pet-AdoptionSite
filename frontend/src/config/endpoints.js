@@ -13,9 +13,6 @@ const PROFILE_DATA = "/profile";
 //Categories
 const GET_ALL_CATEGORIES = "/categories";
 
-//Shelter
-const GET_ALL_SHELTERS = "/shelters";
-
 //Pets
 const GET_ALL_PETS = "/pets";
 
@@ -36,7 +33,6 @@ const API_GET_ADOPTION_REQUESTS = `${API_URL}${GET_ADOPTREQ}`;
 const API_POST_NEW_ADOPTION_REQUESTS = `${API_URL}${POST_NEW_ADOPTREQ}`
 const API_GET_ALL_CATEGORIES = `${API_URL}${GET_ALL_CATEGORIES}`;
 const API_GET_ALL_PETS = `${API_URL}${GET_ALL_PETS}`;
-const API_GET_ALL_SHELTERS = `${API_URL}${GET_ALL_SHELTERS}`;
 
 const PETS_API = `${API_URL}/pets`;
 const CATEG_API = `${API_URL}/categories`;
@@ -47,9 +43,19 @@ const ADOPTREQ_API = `${API_URL}/adoption-requests`;
 // ONLY FOR ADMIN ----------------------------------------------
 // adoption request
 const GET_ALL_ADOPTREQ = "/adoption-requests/";
+const UPDATE_ADOPTREQ = "/update-adoptreq";
+const REMOVE_ADOPTREQ = "/remove-adoptreq";
+
+const API_GET_ALL_ADOPTREQ = `${API_URL}${GET_ALL_ADOPTREQ}`;
+const API_UPDATE_ADOPTREQ = `${API_URL}${UPDATE_ADOPTREQ}`;
+const API_REMOVE_ADOPTREQ = `${API_URL}${REMOVE_ADOPTREQ}`;
 
 //Adopter
 const GET_ALL_ADOPTERS = "/adopters";
+const REMOVE_ADOPTER = "/remove-adopter";
+
+const API_GET_ALL_ADOPTERS = `${API_URL}${GET_ALL_ADOPTERS}`;
+const API_REMOVE_ADOPTER = `${API_URL}${REMOVE_ADOPTER}`;
 
 //Pets
 const POST_NEW_PET = "/pets";
@@ -73,6 +79,13 @@ export {
   API_GET_ALL_CATEGORIES,
   API_GET_ALL_PETS,
   API_POST_NEW_PET,
+  API_GET_ALL_ADOPTREQ,
+  API_UPDATE_ADOPTREQ,
+  API_REMOVE_ADOPTREQ,
+  API_GET_ALL_ADOPTERS,
+  API_REMOVE_ADOPTER,
+  API_UPDATE_PET,
+  API_REMOVE_PET
 }
 // export const API_LOGIN = "https://jsonplaceholder.typicode.com/posts";
 // export const API_SIGNUP = "https://jsonplaceholder.typicode.com/posts";
