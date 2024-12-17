@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Sidebar from "../../components/admin/Sidebar";
 import "../../styles/adminDashboard.css";
 import { Link } from "react-router-dom";
 import { 
   fetchAllPets,
-  createNewPet
+  createNewPet,
+  updatePet,
+  deletePet
  } from "../../services";
 
 const API_URL = "http://localhost:8081/api/pets";
@@ -15,13 +16,13 @@ const PetList = () => {
   const [isLoading, setIsLoading] = useState(true); // Loading state
 
   // State for adding a new pet
-  const [newPet, setNewPet] = useState({
-    name: "",
-    typeId: 1,
-    breed: "",
-    age: "",
-    image: null, // Image file for upload
-  });
+  const [newPet, setNewPet] = useState({});
+  const [name, setName] = useState("");
+  const [typeId, setTypeId] = useState("");
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
+  const [image, setImage] = useState(null);
+  
 
   // States for editing a pet
   const [editingPet, setEditingPet] = useState(null);
@@ -30,7 +31,7 @@ const PetList = () => {
   // Fetch all pets from backend
   const fetchPets = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await fetchAllPets();
       setPets(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -55,34 +56,47 @@ const PetList = () => {
     }
   };
 
-  // Add a new pet
-  const handleCreate = async (e) => {
+  const sanitizeInput = (input) => {
+    return input.trim();
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const formData = new FormData();
-    formData.append("name", newPet.name);
-    formData.append("typeId", newPet.typeId);
-    formData.append("breed", newPet.breed);
-    formData.append("age", newPet.age);
-    formData.append("image", newPet.image);
-
+    formData.append("name", sanitizeInput(name));
+    formData.append("typeId", typeId);
+    formData.append("breed", sanitizeInput(breed));
+    formData.append("age", sanitizeInput(age));
+    if (image) formData.append("image", image);
+  
     try {
-      const response = await axios.post(API_URL, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setPets([...pets, response.data]); // Add new pet to list
-      setNewPet({ name: "", typeId: 1, breed: "", age: "", image: null }); // Reset form
+      setIsLoading(true);
+      const response = await createNewPet(formData);
+      setPets((prevPets) => [...prevPets, response]); // Add new pet to state
+      alert("Pet created successfully!");
     } catch (error) {
-      console.error("Error adding pet:", error);
+      console.error("Error creating pet:", error);
+      alert("Failed to create pet.");
+    } finally {
+      setIsLoading(false);
     }
   };
+  
 
   // Edit a pet
   const handleEdit = (pet) => {
-    setEditingPet(pet.id);
-    setUpdatedPet({
-      ...pet,
-      image: null, // Reset image file for update
-    });
+    try {
+      if (!pet || typeof pet !== "object") {
+        throw new Error("Invalid pet data");
+      }
+
+      const { id = "", name = "", typeId = 1, breed = "", age = 0, image = null } = pet;
+
+      setEditingPet(id);
+      setUpdatedPet({ id, name, typeId, breed, age, image:null });
+    } catch (error) {
+      console.error("Error editing pet:", error);
+    }
   };
 
   // Save the updated pet
@@ -97,16 +111,29 @@ const PetList = () => {
     }
 
     try {
-      const response = await axios.put(`${API_URL}/${editingPet}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      let response;
+      if (editingPet) {
+        response = await updatePet(updatedPet.id, formData);  
+      } else {
+        response = await createNewPet(formData);
+      }
+
+      setPets((prevPets) => {
+        if (editingPet) {
+          return prevPets.map((pets) => 
+            pets.id === editingPet ? response : pets);
+        } else {
+          return [...prevPets, response];
+        }
       });
-      const updatedPets = pets.map((pet) =>
-        pet.id === editingPet ? response.data : pet
-      );
-      setPets(updatedPets);
-      setEditingPet(null); // Exit editing mode
+
+      setEditingPet(null);
+      alert("Pet updated successfully");
     } catch (error) {
       console.error("Error updating pet:", error);
+      alert("Error updating pet");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -118,10 +145,23 @@ const PetList = () => {
   // Delete a pet
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
-      setPets(pets.filter((pet) => pet.id !== id)); // Remove pet from state
+      const confirmDelete = window.confirm("Are you sure you want to delete this pet?");
+      if (confirmDelete) {
+        const response = await deletePet(id);
+
+        if (response.status === 204 || response.status === 200) {
+          setPets((prevPets) => prevPets.filter((pet) => pet.id !== id));
+          alert("Pet deleted successfully");
+        } else {
+          console.error("Error deleting pet:", response);
+          alert("Error deleting pet");
+        }
+      }
     } catch (error) {
       console.error("Error deleting pet:", error);
+      alert("Error deleting pet");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -132,14 +172,14 @@ const PetList = () => {
         <h1>All Pets</h1>
 
         {/* Add Pet Form */}
-        <form onSubmit={handleCreate} className="create-form">
+        <form onSubmit={handleSubmit} className="create-form">
           <h3>🐾 Add a New Pet</h3>
           <input
             type="text"
             name="name"
             placeholder="Name"
             value={newPet.name}
-            onChange={handleInputChange}
+            onChange={handleSubmit}
             required
           />
           <select name="typeId" value={newPet.typeId} onChange={handleInputChange}>
@@ -169,7 +209,7 @@ const PetList = () => {
             onChange={handleInputChange}
             required
           />
-          <button type="submit">Add Pet</button>
+          <button onClick={(e) => handleSubmit(e, pets)}>Add Pet</button>
         </form>
 
         {/* Pets Table */}
@@ -191,15 +231,16 @@ const PetList = () => {
               {pets.map((pet) => (
                 <tr key={pet.id}>
                   <td>
-                    <img
-                      src={
-                        pet.path
-                          ? `http://localhost:8080/${pet.path}`
-                          : "https://via.placeholder.com/50"
-                      }
-                      alt={pet.name}
-                      style={{ width: "50px", height: "50px", borderRadius: "5px" }}
-                    />
+                  <img
+                    src={
+                      pet.path
+                        ? `${API_URL.replace("/api/pets", "")}/${pet.path}` // Dynamically resolve base URL
+                        : "https://via.placeholder.com/50"
+                    }
+                    alt={pet.name}
+                    style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+                  />
+
                   </td>
                   <td>{pet.name}</td>
                   <td>{pet.petType}</td>
@@ -262,5 +303,6 @@ const PetList = () => {
     </div>
   );
 };
+
 
 export default PetList;

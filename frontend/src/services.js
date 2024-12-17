@@ -1,10 +1,10 @@
-import axiosInstance from "../config/axiosConfig";
+import axiosInstance from "../src/config/axiosConfig";
 import {
   API_SIGNUP,
   API_LOGIN,
   // API_LOGOUT,
   API_PROFILE_DATA,
-  API_PUT_RESET_PASSWORD,
+  API_RESET_FORGOT_PASSWORD,
   API_POST_FORGOT_PASSWORD,
   API_GET_ADOPTION_REQUESTS,
   API_POST_NEW_ADOPTION_REQUESTS,
@@ -74,7 +74,7 @@ const handleRequestError = (error, customMessage = "An error occurred") => {
  const putResetPassword = async ({ email, password }) => {
   try {
     const data = { email, password };
-    const response = await axiosInstance.put(API_PUT_RESET_PASSWORD, data);
+    const response = await axiosInstance.put(API_RESET_FORGOT_PASSWORD, data);
     return response.data;
   } catch (error) {
     handleRequestError(error, "Error resetting password");
@@ -115,7 +115,7 @@ const handleRequestError = (error, customMessage = "An error occurred") => {
 
 const fetchAllAdoptionRequest = async () =>{
   try{
-    const reponse = await axiosInstance.get(API_GET_ALL_ADOPTREQ);
+    const response = await axiosInstance.get(API_GET_ALL_ADOPTREQ);
     return response.data;
   } catch (error){
     handleRequestError(error, "Error fetching adoption request");
@@ -171,23 +171,26 @@ const fetchAllAdoptionRequest = async () =>{
   }
 };
 
- const updatePet = async (id, data) => {
+const updatePet = async (id, data) => {
   try {
-    const response = await axiosInstance.put(API_UPDATE_PET, data);
+    const response = await axiosInstance.put(`${API_UPDATE_PET}/${id}`, data);
     return response.data;
   } catch (error) {
     handleRequestError(error, "Error updating pet");
   }
 };
 
- const deletePet = async (id) => {
+
+
+const deletePet = async (id) => {
   try {
-    const response = await axiosInstance.delete(API_REMOVE_PET);
+    const response = await axiosInstance.delete(`${API_REMOVE_PET}/${id}`);
     return response.data;
   } catch (error) {
     handleRequestError(error, "Error deleting pet");
   }
 };
+
 
 // Categories
  const fetchAllCategories = async () => {
