@@ -1,0 +1,100 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .footer__logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .footer__sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .footer__sections {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .footer__heading {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .footer__quicklink{
+    margin-left: 3rem;
+  }
+  
+  .footer__links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer__links a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* .contact__footer {
+    /* padding: 1rem 1rem 1rem 1rem; */
+    /* gap: 2rem; */
+  */
+  
+  .footer__signup-card {
+    margin-right: 3rem;
+    background-color: #444;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+  }
+  
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .signup-input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+  }
+  
+  .signup-button {
+    padding: 0.5rem;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    background-color: #ff4b4b;
+  }
+  
+  .footer__bottom-text {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  
