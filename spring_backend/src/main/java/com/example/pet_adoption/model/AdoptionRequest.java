@@ -25,10 +25,10 @@ public class AdoptionRequest {
 
     }
 
+
     public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Category petCategory, String petId, String petName) {
         this.id = id;
         this.adopterName = adopterName;
-        this.date = date;
         this.status = status;
         this.petCategory = petCategory;
         this.petId = petId;
