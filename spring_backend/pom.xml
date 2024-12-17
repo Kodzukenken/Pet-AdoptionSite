@@ -87,28 +87,12 @@
 
     <!-- Build Configuration -->
     <build>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-        <plugins>
-            <!-- Spring Boot Maven Plugin -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-=======
-=======
->>>>>>> Stashed changes
     <plugins>
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
     </plugins>
-<<<<<<< Updated upstream
->>>>>>> 304b5ac7064bb7cb0f86f3c06da5730eef3dc775
-=======
->>>>>>> Stashed changes
     </build>
 
 </project>

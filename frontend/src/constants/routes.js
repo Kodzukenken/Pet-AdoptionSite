@@ -5,4 +5,4 @@ export const ADOPT = "/adopt-request";
 export const USERDASH = "/user-dashboard";
 export const SEARCH = "/search";
 export const LANDING_PAGE = "/landing-page";
-export const PET_DETAILS = "/pet-details"; // Added this line
+export const PET_DETAILS = "/pet-details"; 
