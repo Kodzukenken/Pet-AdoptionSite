@@ -151,11 +151,7 @@ tr:hover td {
   transition: background-color 0.3s ease;
 }
 
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes
 .action-buttons .accept {
   background-color: #4caf50; /* Green */
   color: white;
@@ -250,24 +246,6 @@ form button:hover {
   width: 80px;
 }
 
-<<<<<<< Updated upstream
-/* Delete Button Styling */
-.delete-btn {
-  background-color: #ff4d4f; /* Red color */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.delete-btn:hover {
-  background-color: #6a0dad;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
-=======
 .delete-btn {
   background-color: #f44336; /* Red Cancel Button */
   color: white;
@@ -282,7 +260,6 @@ form button:hover {
 
 .delete-btn:hover {
   background-color: #d32f2f;
->>>>>>> Stashed changes
 }
 
 .delete-btn:active {
@@ -300,8 +277,6 @@ form button:hover {
   display: inline-block;
 }
 
-<<<<<<< Updated upstream
-=======
 /* Edit Button Styling */
 .edit-btn {
   background-color: #ffc107; 
@@ -324,13 +299,10 @@ form button:hover {
 }
 
 /* Update Form Styling */
->>>>>>> Stashed changes
 
 
 
 
-<<<<<<< Updated upstream
-=======
 .update-form,
 .add-form {
   background-color: #ffffff;
@@ -406,4 +378,3 @@ form button:hover {
   background-color: #d32f2f;
 }
 
->>>>>>> Stashed changes
