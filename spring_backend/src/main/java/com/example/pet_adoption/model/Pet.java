@@ -9,11 +9,10 @@ public class Pet {
     @Id
     private ObjectId id;
     private ObjectId typeId;
-    private ObjectId shelterId;
     private int age;
     private String name;
-    private String vaccine;
-    private String careNotes;
+    // private String vaccine;
+    // private String careNotes;
     private String path;  //path to img
     private String status;
 
@@ -22,13 +21,8 @@ public class Pet {
     }
 
     // Constructor with all fields
-    public Pet(ObjectId id, ObjectId typeId, ObjectId shelterId, int age, String vaccine, String careNotes, String path, String status, String name) {
-        this.id = id;
-        this.typeId = typeId;
-        this.shelterId = shelterId;
-        this.age = age;
-        this.vaccine = vaccine;
-        this.careNotes = careNotes;
+    public Pet(ObjectId id, ObjectId typeId, int age, String path, String status, String name) {
+        // this.vaccine = vaccine;
         this.path = path;
         this.status = status;
         this.name = name;
@@ -51,13 +45,7 @@ public class Pet {
         this.typeId = typeId;
     }
 
-    public ObjectId getShelterId() {
-        return shelterId;
-    }
 
-    public void setShelterId(ObjectId shelterId) {
-        this.shelterId = shelterId;
-    }
 
     public int getAge() {
         return age;
@@ -67,21 +55,6 @@ public class Pet {
         this.age = age;
     }
 
-    public String getVaccine() {
-        return vaccine;
-    }
-
-    public void setVaccine(String vaccine) {
-        this.vaccine = vaccine;
-    }
-
-    public String getCareNotes() {
-        return careNotes;
-    }
-
-    public void setCareNotes(String careNotes) {
-        this.careNotes = careNotes;
-    }
 
     public String getPath() {
         return path;

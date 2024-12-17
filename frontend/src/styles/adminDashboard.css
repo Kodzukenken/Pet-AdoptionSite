@@ -151,6 +151,7 @@ tr:hover td {
   transition: background-color 0.3s ease;
 }
 
+
 .action-buttons .accept {
   background-color: #4caf50; /* Green */
   color: white;
@@ -245,22 +246,20 @@ form button:hover {
   width: 80px;
 }
 
-/* Delete Button Styling */
 .delete-btn {
-  background-color: #ff4d4f; /* Red color */
-  color: #fff; /* White text */
+  background-color: #f44336; /* Red Cancel Button */
+  color: white;
+  padding: 8px 15px;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease;
+  margin-left: 2rem;
 }
 
 .delete-btn:hover {
-  background-color: #6a0dad;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  background-color: #d32f2f;
 }
 
 .delete-btn:active {
@@ -278,7 +277,104 @@ form button:hover {
   display: inline-block;
 }
 
+/* Edit Button Styling */
+.edit-btn {
+  background-color: #ffc107; 
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.edit-btn:active {
+  background-color: #c79100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* Update Form Styling */
 
 
 
+
+.update-form,
+.add-form {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  align-items: left;
+}
+
+.update-form h3,
+.add-form h3 {
+  font-size: 1.5rem;
+  color: #51a5ff;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.update-form input,
+.add-form input {
+  display: block;
+  width: calc(100% - 20px);
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.update-form input:focus,
+.add-form input:focus {
+  border-color: #51a5ff;
+  outline: none;
+}
+
+.update-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.update-form .save-btn,
+.add-form .save-btn {
+  background-color: #4caf50; /* Green Save Button */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.update-form .save-btn:hover,
+.add-form .save-btn:hover {
+  background-color: #45a049;
+}
+
+.update-form .cancel-btn {
+  background-color: #f44336; /* Red Cancel Button */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.update-form .cancel-btn:hover {
+  background-color: #d32f2f;
+}
 

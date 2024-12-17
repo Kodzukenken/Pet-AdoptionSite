@@ -5,15 +5,13 @@ import java.util.Date;
 public class AdoptionRequestDTO {
     private String adopterName;
     private Date date;
-    private String shelterName;
     private String petKind;
     private String petName;
     private String status;
 
-    public AdoptionRequestDTO(String adopterName, Date date, String shelterName, String petKind, String petName, String status) {
+    public AdoptionRequestDTO(String adopterName, Date date, String petKind, String petName, String status) {
         this.adopterName = adopterName;
         this.date = date;
-        this.shelterName = shelterName;
         this.petKind = petKind;
         this.petName = petName;
         this.status = status;
@@ -33,14 +31,6 @@ public class AdoptionRequestDTO {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public String getShelterName() {
-        return shelterName;
-    }
-
-    public void setShelterName(String shelterName) {
-        this.shelterName = shelterName;
     }
 
     public String getPetKind() {

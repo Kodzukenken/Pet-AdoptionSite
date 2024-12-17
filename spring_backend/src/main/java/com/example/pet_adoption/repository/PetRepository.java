@@ -14,12 +14,7 @@ public interface PetRepository extends MongoRepository<Pet, ObjectId> {
 
     List<Pet> findById(String id);
 
-    // pet will have shelter's id
-    List<Pet> findByShelterId(ObjectId shelterId);
-
-    List<Pet> findByVaccine(String vaccine);
-
-    List<Pet> findByCareNotesContaining(String careNotes);
-
     List<Pet> findByTypeId(ObjectId typeId);
+
+    List<ObjectId> getAvailablePets();
 }

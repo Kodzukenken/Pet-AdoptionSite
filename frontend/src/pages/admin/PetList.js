@@ -1,46 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Sidebar from "../../components/admin/Sidebar";
-import petsData from "../../data/petsData";
+import "../../styles/adminDashboard.css";
+
+const API_URL = "http://localhost:8080/api/pets"; // Backend API endpoint
 
 const PetList = () => {
-  const [pets, setPets] = useState(petsData);
+  const [pets, setPets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // State for the form input
+  // State for adding a new pet
   const [newPet, setNewPet] = useState({
     name: "",
-    type: "",
+    typeId: "",
     breed: "",
     age: "",
+    path: "",
   });
 
-  // Handle form input changes
+  // State for editing pets
+  const [editingPet, setEditingPet] = useState(null);
+  const [updatedPet, setUpdatedPet] = useState({});
+
+  // Fetch all pets
+  const fetchPets = async () => {
+    try {
+      const response = await axios.get(API_URL);
+      setPets(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching pets:", error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPets();
+  }, []);
+
+  // Handle input change for forms
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewPet({ ...newPet, [name]: value });
   };
 
-  // Handle adding a new pet
-  const handleCreate = (e) => {
+  const handleUpdateChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedPet({ ...updatedPet, [name]: value });
+  };
+
+  // Add a new pet
+  const handleCreate = async (e) => {
     e.preventDefault();
-
-    if (newPet.name && newPet.type && newPet.breed && newPet.age) {
-      const newPetData = {
-        id: pets.length + 1,
-        ...newPet,
-        age: parseInt(newPet.age, 10), // Ensure age is a number
-      };
-
-      setPets([...pets, newPetData]);
-      setNewPet({ name: "", type: "", breed: "", age: "" }); // Reset form
-    } else {
-      alert("Please fill in all fields.");
+    try {
+      const response = await axios.post(API_URL, newPet);
+      setPets([...pets, response.data]);
+      setNewPet({ name: "", typeId: "", breed: "", age: "", path: "" });
+    } catch (error) {
+      console.error("Error adding pet:", error);
     }
   };
 
-  // Handle delete
-  const handleDelete = (id) => {
-    const updatedPets = pets.filter((pet) => pet.id !== id);
-    setPets(updatedPets);
+  // Edit a pet
+  const handleEdit = (pet) => {
+    setEditingPet(pet.id);
+    setUpdatedPet({ ...pet });
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await axios.put(`${API_URL}/${editingPet}`, updatedPet);
+      const updatedPets = pets.map((pet) =>
+        pet.id === editingPet ? response.data : pet
+      );
+      setPets(updatedPets);
+      setEditingPet(null);
+    } catch (error) {
+      console.error("Error updating pet:", error);
+    }
+  };
+
+  const handleCancel = () => {
+    setEditingPet(null);
+  };
+
+  // Delete a pet
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      setPets(pets.filter((pet) => pet.id !== id));
+    } catch (error) {
+      console.error("Error deleting pet:", error);
+    }
   };
 
   return (
@@ -49,8 +100,8 @@ const PetList = () => {
       <div className="content">
         <h1>All Pets</h1>
 
-        {/* Create Form */}
-        <form onSubmit={handleCreate} style={{ marginBottom: "20px" }}>
+        {/* Add Pet Form */}
+        <form onSubmit={handleCreate} className="create-form">
           <h3 className="form-heading">🐾 Add a New Pet</h3>
           <input
             type="text"
@@ -58,16 +109,14 @@ const PetList = () => {
             placeholder="Name"
             value={newPet.name}
             onChange={handleInputChange}
-            className="small-input"
             required
           />
           <input
             type="text"
-            name="type"
-            placeholder="Type"
-            value={newPet.type}
+            name="typeId"
+            placeholder="Type ID (1 = Dog, 2 = Cat)"
+            value={newPet.typeId}
             onChange={handleInputChange}
-            className="small-input"
             required
           />
           <input
@@ -76,7 +125,6 @@ const PetList = () => {
             placeholder="Breed"
             value={newPet.breed}
             onChange={handleInputChange}
-            className="small-input"
             required
           />
           <input
@@ -85,39 +133,111 @@ const PetList = () => {
             placeholder="Age"
             value={newPet.age}
             onChange={handleInputChange}
-            className="small-input age"
             required
           />
-          <button type="submit" style={{ height: "35px" }}>Add Pet</button>
+          <input
+            type="text"
+            name="path"
+            placeholder="Image URL"
+            value={newPet.path}
+            onChange={handleInputChange}
+            required
+          />
+          <button type="submit">Add Pet</button>
         </form>
 
-
         {/* Pets Table */}
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Breed</th>
-              <th>Age</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pets.map((pet) => (
-              <tr key={pet.id}>
-                <td>{pet.name}</td>
-                <td>{pet.type}</td>
-                <td>{pet.breed}</td>
-                <td>{pet.age}</td>
-                <td>
-                  <button>Edit</button>
-                  <button onClick={() => handleDelete(pet.id)}>Delete</button>
-                </td>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Breed</th>
+                <th>Age</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {pets.map((pet) => (
+                <tr key={pet.id}>
+                  <td>
+                    <img
+                      src={pet.path || "https://via.placeholder.com/50"}
+                      alt={pet.name}
+                      style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+                    />
+                  </td>
+                  <td>{pet.name}</td>
+                  <td>{pet.typeId === 1 ? "Dog" : "Cat"}</td>
+                  <td>{pet.breed}</td>
+                  <td>{pet.age}</td>
+                  <td>
+                    <button className="edit-btn" onClick={() => handleEdit(pet)}>
+                      Edit
+                    </button>
+                    <button className="delete-btn" onClick={() => handleDelete(pet.id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+
+        {/* Update Form */}
+        {editingPet && (
+          <div className="update-form">
+            <h3>Update Pet</h3>
+            <input
+              type="text"
+              name="name"
+              value={updatedPet.name}
+              onChange={handleUpdateChange}
+              placeholder="Name"
+            />
+            <input
+              type="text"
+              name="typeId"
+              value={updatedPet.typeId}
+              onChange={handleUpdateChange}
+              placeholder="Type ID (1 = Dog, 2 = Cat)"
+            />
+            <input
+              type="text"
+              name="breed"
+              value={updatedPet.breed}
+              onChange={handleUpdateChange}
+              placeholder="Breed"
+            />
+            <input
+              type="number"
+              name="age"
+              value={updatedPet.age}
+              onChange={handleUpdateChange}
+              placeholder="Age"
+            />
+            <input
+              type="text"
+              name="path"
+              value={updatedPet.path}
+              onChange={handleUpdateChange}
+              placeholder="Image URL"
+            />
+            <div className="update-form-buttons">
+              <button className="save-btn" onClick={handleSave}>
+                Save
+              </button>
+              <button className="cancel-btn" onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
