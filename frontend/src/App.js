@@ -9,14 +9,18 @@ import Login from './pages/Login';
 import CatAdoption from './pages/CatAdoption';
 import DogAdoption from './pages/DogAdoption';
 import Search from './pages/search';
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 import UserAdoptionStatus from './pages/userAdoptionStatus';
 =======
+=======
+>>>>>>> Stashed changes
 // import AdminDashboard from "./pages/admin/AdminDashboard";
 import PetList from "./pages/admin/PetList";
 import UserList from "./pages/admin/UserList";
 import AdoptionRequests from "./pages/admin/AdoptionRequests";
 import UserAdoptionStatus from './pages/UserAdoptionStatus';
+<<<<<<< Updated upstream
 >>>>>>> 304b5ac7064bb7cb0f86f3c06da5730eef3dc775
 
 function App() {
@@ -43,6 +47,11 @@ function App() {
           </div>
       </Router>
 =======
+=======
+
+function App() {
+  return (
+>>>>>>> Stashed changes
     <Router>
       <AppContent />
     </Router>
@@ -76,7 +85,10 @@ function AppContent() {
       {/* Conditionally render the Footer */}
       {!adminRoutes.includes(location.pathname) && <Footer />}
     </div>
+<<<<<<< Updated upstream
 >>>>>>> 304b5ac7064bb7cb0f86f3c06da5730eef3dc775
+=======
+>>>>>>> Stashed changes
   );
 }
 

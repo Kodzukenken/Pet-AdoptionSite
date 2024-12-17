@@ -16,9 +16,6 @@ public class AdoptionRequest {
     private String status;
 
     @DBRef
-    private Shelter shelter;
-
-    @DBRef
     private Category petCategory;
 
     private String petId; //property 'pet' not found
@@ -28,12 +25,15 @@ public class AdoptionRequest {
 
     }
 
+<<<<<<< Updated upstream
     public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Shelter shelter, Category petCategory, String petId, String petName) {
+=======
+    public AdoptionRequest(ObjectId id, String adopterName, Date date, String status, Category petCategory, String petId, String petName) {
+>>>>>>> Stashed changes
         this.id = id;
         this.adopterName = adopterName;
         this.date = date;
         this.status = status;
-        this.shelter = shelter;
         this.petCategory = petCategory;
         this.petId = petId;
         this.petName = petName;
@@ -79,12 +79,12 @@ public class AdoptionRequest {
         this.petCategory = petCategory;
     }
 
-    public void setShelter(Shelter shelter) {
-        this.shelter = shelter;
+    public String getPetId() {
+        return petId;
     }
 
-    public Shelter getShelter() {
-        return shelter;
+    public void setPetId(String petId) {
+        this.petId = petId;
     }
 
     public String getPetId() {

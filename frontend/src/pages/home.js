@@ -7,11 +7,7 @@ import aboutus2 from "../assets/aboutus2.jpg";
 import aboutus3 from "../assets/aboutus3.jpg";
 import aboutus4 from "../assets/aboutus4.jpg";
 import aboutus5 from "../assets/aboutus5.jpg";
-// import petHome from "../assets/petHome.jpeg";
-// import petDiet from "../assets/petDiet.jpeg";
-// import petPlay from "../assets/petPlay.jpeg";
-// import petVet from "../assets/petVet.jpeg";
-// import petgroom from "../assets/petgroom.jpeg";
+
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -198,14 +194,14 @@ const Home = () => {
             >
                 <h2 className="card__title">Looking for a pet?</h2>
                 <div className="adoption__cards">
-                    <div className="adoption__card">
+                    {/* <div className="adoption__card">
                         <div className="adoption__icon">🏠</div>
                         <h3 className="adoption__card-title">Our Shelters</h3>
                         <p className="adoption__description">
                             Check out our trusted and reliable shelters, ready to provide homes
                         </p>
                         <button className="adoption__button">See Shelters</button>
-                    </div>
+                    </div> */}
                     <div className="adoption__card">
                         <div className="adoption__icon">🐱</div>
                         <h3 className="adoption__card-title">Cat Adoption</h3>

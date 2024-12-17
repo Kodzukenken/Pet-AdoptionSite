@@ -1,12 +1,12 @@
 .user-adoption-status {
     padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #e7f5e5; 
+    background-color: #e7f5e5; /* Light green background */
     min-height: 100vh;
   }
   
   h1 {
-    color: #4a148c;
+    color: #4a148c; /* Dark purple */
     text-align: center;
     margin-bottom: 20px;
   }

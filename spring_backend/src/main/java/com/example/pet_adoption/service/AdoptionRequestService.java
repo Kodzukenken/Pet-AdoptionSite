@@ -24,7 +24,6 @@ public class AdoptionRequestService {
                 .map(request -> new AdoptionRequestDTO(
                         request.getAdopterName(),
                         request.getDate(),
-                        request.getShelter() != null ? request.getShelter().getName() : "Unknown Shelter",
                         request.getPetCategory() != null && request.getPetCategory().getType() == 1 ? "Dog" : "Cat", // Default to "Cat" if null
                         request.getPetName() != null ? request.getPetName() : "Unnamed Pet",
                         request.getStatus() != null ? request.getStatus() : "Pending"
