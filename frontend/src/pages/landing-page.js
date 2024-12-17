@@ -8,6 +8,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../context/user-context";
 import { HOME, USERDASH } from '../constants/routes';
+// import CreateAccount from '../styles/CreateAccount.css';
+// import Login from '../styles/login.css';
+
+import '../styles/landing.css';
+
 // import {AdoptionRequests} from '../pages/admin/adoption-requests';
 import Swal from "sweetalert2";
 

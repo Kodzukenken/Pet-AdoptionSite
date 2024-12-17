@@ -23,8 +23,6 @@ public class AuthService {
     @Autowired
     private JwtUtil tokenProvider;
 
-    private static final String uploadDir = "uploads/"; // Example directory
-
     // Login Authentication
     public String authenticateUser(LoginRequest loginRequest) {
 
