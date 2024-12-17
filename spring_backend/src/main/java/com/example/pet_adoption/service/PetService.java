@@ -8,14 +8,14 @@ import com.example.pet_adoption.repository.PetRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Paths;
+// import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.io.File;
-import java.io.IOException;
+// import java.io.File;
+// import java.io.IOException;
 
 
 @Service
@@ -29,21 +29,6 @@ public class PetService {
     public PetService(PetRepository petRepository, CategoryRepository categoryRepository) {
         this.petRepository = petRepository;
         this.categoryRepository = categoryRepository;
-    }
-
-    // Save uploaded image to server
-    public String saveImage(MultipartFile image) throws IOException {
-        String uploadDir = "uploads/";
-        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
-        File uploadPath = new File(uploadDir);
-
-        if (!uploadPath.exists()) {
-            uploadPath.mkdirs();
-        }
-
-        String filePath = Paths.get(uploadDir, fileName).toString();
-        image.transferTo(new File(filePath));
-        return filePath;
     }
 
     // 1. Get Pet by ID

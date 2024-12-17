@@ -8,6 +8,9 @@ public class SignupRequest {
   private String address;
   private String phoneNum;
   
+public SignupRequest() {
+}
+
 public SignupRequest(String email, String password, String name, int dob, String address, String phoneNum) {
     this.email = email;
     this.password = password;

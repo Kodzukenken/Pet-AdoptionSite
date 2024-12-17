@@ -12,16 +12,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Optional;
 
 import com.example.pet_adoption.model.Adopter;
 import com.example.pet_adoption.model.AdoptionRequest;
 import com.example.pet_adoption.model.Pet;
 // import com.example.pet_adoption.repository.AdopterRepository;
 import com.example.pet_adoption.service.AdminService;
-// import com.example.pet_adoption.service.AdopterService;
-// import com.example.pet_adoption.*;
+
 
 @RestController
 @RequestMapping("/api/admin")
@@ -50,17 +55,48 @@ public class AdminController {
     @GetMapping("/pets")
     public List<Pet> fetchAllPets(){
         return adminService.fetchAllPets();
-    }
+    };
 
-    @PostMapping("/pets/new-pet")
-    public Pet createPet(@RequestBody Pet pet){
-        return adminService.postNewPet(pet);
-    }
-
+    @PostMapping(value = "/pets/new-pet", consumes = "multipart/form-data")
+    public ResponseEntity<?> createPet(
+            @RequestParam("name") String name,
+            @RequestParam("age") int age,
+            @RequestParam("breed") String breed,
+            @RequestParam("status") String status,
+            @RequestParam("typeId") ObjectId typeId,
+            @RequestPart("file") MultipartFile file) {
+    
+        try {
+            // Save the image and get the file path
+            String filePath = adminService.saveImage(file);
+    
+            // Create a new Pet object
+            Pet pet = new Pet();
+            pet.setName(name);
+            pet.setAge(age);
+            pet.setBreed(breed);
+            pet.setStatus(status);
+            pet.setTypeId(typeId);
+            pet.setPath(filePath);
+    
+            // Save the Pet object
+            Pet savedPet = adminService.postNewPet(pet);
+            return ResponseEntity.ok(savedPet);
+    
+        } catch (IOException e) {
+            // Handle file save errors
+            return ResponseEntity.status(500).body("Error saving the file: " + e.getMessage());
+        }
+    };
+    
+    //pet update
     @PutMapping("/update-pet/{id}")
-    public Pet updatePet(@PathVariable ObjectId id, @RequestBody Pet pet){
-        return adminService.updatePet(id, pet);
-    }
+    public ResponseEntity<?> updatePet(@PathVariable ObjectId id, @RequestBody Pet pet){
+        Optional<Pet> updatedPet = adminService.updatePet(id, pet);
+        return updatedPet
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+    };
 
     @DeleteMapping("/remove-pets/{id}")
     public ResponseEntity<Void> removePet(@PathVariable ObjectId id){

@@ -5,6 +5,7 @@ import com.example.pet_adoption.dto.ResetPasswordRequest;
 import com.example.pet_adoption.dto.SignupRequest;
 import com.example.pet_adoption.model.Adopter;
 import com.example.pet_adoption.repository.AdopterRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class AuthService {
 
     @Autowired
     private JwtUtil tokenProvider;
+
+    private static final String uploadDir = "uploads/"; // Example directory
 
     // Login Authentication
     public String authenticateUser(LoginRequest loginRequest) {
@@ -64,7 +67,6 @@ public class AuthService {
             defaultRole,
             request.getDob()
         );
-    
 
         adopterRepository.save(newAdopter);
     }

@@ -2,7 +2,9 @@ import React from "react";
 import logo from "../assets/logoTransparent.png";
 import "../styles/footer.css"; // Make sure this path matches your CSS file
 import { Link } from "react-router-dom"
-
+import {
+    SEARCH
+} from "../constants/routes";
 
 export default function Footer() {
     return (
@@ -26,9 +28,8 @@ export default function Footer() {
                 <div className="footer__quicklink">
                     <h3 className="footer__heading">Quick Links</h3>
                     <ul className="footer__links">
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/adopt">Adopt a Pet</a></li>
-                        <li><a href="/shelters">Find Shelters</a></li>
+                        {/* <li><a href="/about">About Us</a></li> */}
+                        <li><a href={SEARCH}>Adopt a Pet</a></li>
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/faq">FAQ</a></li>
                     </ul>

@@ -34,33 +34,33 @@ public class PetController {
     }
 
     // 3. Create pet with image upload
-    @PostMapping(consumes = "multipart/form-data")
-    public ResponseEntity<Pet> createPet(
-            @RequestParam("name") String name,
-            @RequestParam("typeId") ObjectId typeId,
-            @RequestParam("breed") String breed,
-            @RequestParam("age") int age,
-            @RequestParam("image") MultipartFile image) {
-        try {
-            // Save the image and retrieve the path
-            String imagePath = petService.saveImage(image);
+    // @PostMapping(consumes = "multipart/form-data")
+    // public ResponseEntity<Pet> createPet(
+    //         @RequestParam("name") String name,
+    //         @RequestParam("typeId") ObjectId typeId,
+    //         @RequestParam("breed") String breed,
+    //         @RequestParam("age") int age,
+    //         @RequestParam("image") MultipartFile image) {
+    //     try {
+    //         // Save the image and retrieve the path
+    //         String imagePath = petService.saveImage(image);
 
-            // Create a new Pet object
-            Pet pet = new Pet();
-            pet.setName(name);
-            pet.setTypeId(typeId);
-            pet.setBreed(breed);
-            pet.setAge(age);
-            pet.setPath(imagePath);
-            pet.setStatus("Available");
+    //         // Create a new Pet object
+    //         Pet pet = new Pet();
+    //         pet.setName(name);
+    //         pet.setTypeId(typeId);
+    //         pet.setBreed(breed);
+    //         pet.setAge(age);
+    //         pet.setPath(imagePath);
+    //         pet.setStatus("Available");
 
-            // Save the pet
-            Pet createdPet = petService.createPet(pet);
-            return ResponseEntity.ok(createdPet);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+    //         // Save the pet
+    //         Pet createdPet = petService.createPet(pet);
+    //         return ResponseEntity.ok(createdPet);
+    //     } catch (Exception e) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
+    // }
 
     // 4. Update pet (optional - add image support)
     @PutMapping("/{id}")
@@ -86,8 +86,8 @@ public class PetController {
 
             // If a new image is uploaded, update the image path
             if (image != null) {
-                String imagePath = petService.saveImage(image);
-                petDetails.setPath(imagePath);
+                // String imagePath = petService.saveImage(image);
+                // petDetails.setPath(imagePath);
             }
 
             Pet updatedPet = petService.createPet(petDetails);

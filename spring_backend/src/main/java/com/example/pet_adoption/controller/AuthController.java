@@ -5,15 +5,12 @@ import com.example.pet_adoption.dto.LoginRequest;
 import com.example.pet_adoption.dto.ResetPasswordRequest;
 import com.example.pet_adoption.service.AuthService;
 
-
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
@@ -27,9 +24,24 @@ public class AuthController {
     }
 
     //account login functions & etc
-    @PutMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody @Valid SignupRequest authRequest){
-        authService.registerUser(authRequest);
+    @PutMapping(value = "/signup", consumes = "multipart/form-data")
+    public ResponseEntity<String> signup(
+        @RequestParam("email") String email,
+        @RequestParam("name") String name,
+        @RequestParam("address") String address,
+        @RequestParam("password") String password,
+        @RequestParam("age") int age
+        // @RequestParam("file") MultipartFile file
+        ){
+        
+        SignupRequest request = new SignupRequest();
+            request.setEmail(email);
+            request.setPassword(password);
+            request.setName(name);
+            request.setDob(age);
+            request.setAddress(address);
+
+        authService.registerUser(request);
         return ResponseEntity.ok("User registered successfully!");
     }
 

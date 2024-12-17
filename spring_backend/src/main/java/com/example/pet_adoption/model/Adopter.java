@@ -85,4 +85,5 @@ public class Adopter {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

@@ -10,8 +10,13 @@ import com.example.pet_adoption.repository.PetRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminService {
@@ -45,18 +50,32 @@ public class AdminService {
         return petRepository.save(pet);
     }
 
-    //update pet
-    public Pet updatePet(ObjectId id, Pet updatedPet){
-        Pet existingPet = petRepository.findById(id)
-          .orElseThrow(() -> new RuntimeException("Adopter not found"));
-        existingPet.setName(updatedPet.getName());
-        existingPet.setAge(updatedPet.getAge());
-        existingPet.setBreed(updatedPet.getBreed());
-        existingPet.setStatus(updatedPet.getStatus());
-        existingPet.setTypeId(updatedPet.getTypeId());
-        existingPet.setPath(updatedPet.getPath());
+        // Save uploaded image to server
+    public String saveImage(MultipartFile image) throws IOException {
+        String uploadDir = "uploads/";
+        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
+        File uploadPath = new File(uploadDir);
 
-        return petRepository.save(existingPet);
+        if (!uploadPath.exists()) {
+            uploadPath.mkdirs();
+        }
+
+        String filePath = Paths.get(uploadDir, fileName).toString();
+        image.transferTo(new File(filePath));
+        return filePath;
+    }
+
+    //update pet
+    public Optional<Pet> updatePet(ObjectId id, Pet petDetails) {
+        return petRepository.findById(id).map(existingPet -> {
+            existingPet.setName(petDetails.getName());
+            existingPet.setBreed(petDetails.getBreed());
+            existingPet.setAge(petDetails.getAge());
+            existingPet.setPath(petDetails.getPath());
+            existingPet.setTypeId(petDetails.getTypeId());
+            existingPet.setStatus(petDetails.getStatus());
+            return petRepository.save(existingPet);
+        });
     }
 
     //remove pet
