@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "../../components/admin/Sidebar";
 import usersData from "../../data/usersData";
+import {
+  fetchAllAdopters,
+  deleteAdopter
+} from "../../services";
 
 const UserList = () => {
   const [users, setUsers] = useState(usersData);

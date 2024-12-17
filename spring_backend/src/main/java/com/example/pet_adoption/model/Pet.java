@@ -12,8 +12,6 @@ public class Pet {
     private int age;
     private String name;
     private String breed;
-    // private String vaccine;
-    // private String careNotes;
     private String path;  //path to img
     private String status;
 
@@ -45,8 +43,6 @@ public class Pet {
     public void setTypeId(ObjectId typeId) {
         this.typeId = typeId;
     }
-
-
 
     public int getAge() {
         return age;

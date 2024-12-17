@@ -7,7 +7,7 @@ import {
   API_PROFILE_DATA,
   API_GET_ADOPTION_REQUESTS,
   API_CREATE_ADOPTION_REQUEST,
-  API_GET_ALL_PETS,
+  API_GET_ALL_PETS
 } from "../config/endpoints.service";
 
 // Define types for response data

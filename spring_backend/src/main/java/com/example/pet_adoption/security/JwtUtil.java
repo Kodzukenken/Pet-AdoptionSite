@@ -1,8 +1,9 @@
 package com.example.pet_adoption.security;
 
-import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.security.Key;
 import java.util.Date;
@@ -26,16 +27,8 @@ public class JwtUtil {
     }
 
     // validate 
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parserBuilder() 
-                .setSigningKey(SECRET_KEY) 
-                .build() 
-                .parseClaimsJws(token); 
-            return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            return false; // Invalid token
-        }
+    public boolean validateToken(String token, String email) {
+        return (extractEmail(token).equals(email) && !isTokenExpired(token));
     }
 
     // email from token
@@ -56,5 +49,20 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody()
                 .get("role", String.class);
+    }
+
+    // Extract expiration date from token
+    public Date extractExpiration(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getExpiration();
+    }
+
+    // Check if token is expired
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
     }
 }

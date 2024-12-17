@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EndpointsService {
   // Base URL
-  private readonly API_URL = 'http://localhost:8080/api';
+  private readonly API_URL = 'http://localhost:8081/api';
 
   // Auth Endpoints
   readonly API_SIGNUP = `${this.API_URL}/auth/signup`;
@@ -37,4 +37,15 @@ export class EndpointsService {
   readonly API_POST_NEW_SHELTER = `${this.API_URL}/shelters`;
 
   constructor() { }
+}
+
+export {
+  API_LOGIN,
+  API_SIGNUP,
+  API_POST_FORGOT_PASSWORD,
+  API_PUT_RESET_PASSWORD,
+  API_PROFILE_DATA,
+  API_GET_ADOPTION_REQUESTS,
+  API_CREATE_ADOPTION_REQUEST,
+  API_GET_ALL_PETS
 }

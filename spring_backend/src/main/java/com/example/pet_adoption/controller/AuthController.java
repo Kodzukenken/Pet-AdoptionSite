@@ -3,7 +3,6 @@ package com.example.pet_adoption.controller;
 import com.example.pet_adoption.dto.SignupRequest;
 import com.example.pet_adoption.dto.LoginRequest;
 import com.example.pet_adoption.dto.ResetPasswordRequest;
-// import com.example.pet_adoption.model.Adopter;
 import com.example.pet_adoption.service.AuthService;
 
 
@@ -24,27 +23,27 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         String token = authService.authenticateUser(loginRequest);
-        return ResponseEntity.ok(token);  // Return JWT token or a similar response
+        return ResponseEntity.ok(token);  // Return JWT token
     }
 
-        //account login functions & etc
+    //account login functions & etc
     @PutMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody @Valid SignupRequest authRequest){
         authService.registerUser(authRequest);
         return ResponseEntity.ok("User registered successfully!");
     }
 
-    // Forgot Password Endpoint
+    // Forgot Password
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody String email) {
         if (authService.checkEmailExist(email)) {
-            // No need to send OTP, just let the user reset the password
+            // No OTP, just let user reset pass
             return ResponseEntity.ok("Please proceed to reset your password.");
         }
         return ResponseEntity.status(400).body("Email not found.");
     }
 
-    // Reset Password Endpoint
+    // Reset Password 
     @PutMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
         boolean isUpdated = authService.resetPassword(resetPasswordRequest);
