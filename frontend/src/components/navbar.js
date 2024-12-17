@@ -30,7 +30,7 @@ export default function Navbar (currentPath) {
     //                 <img src={logo} alt="Logo" className="logo" /> {/* Logo image */}
     //             </NavLink>
     //             <div
-    //                 className={`nav__menu ${isMenuOpen ? "show-menu" : ""}`}
+    //                 className={nav__menu ${isMenuOpen ? "show-menu" : ""}}
     //                 id="nav-menu"
     //             >
     //                 <ul className="nav__list">
