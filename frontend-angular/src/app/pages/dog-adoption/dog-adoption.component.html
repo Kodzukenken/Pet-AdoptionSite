@@ -1,1 +1,70 @@
-<p>dog-adoption works!</p>
+<!-- src/app/components/dog-adoption/dog-adoption.component.html -->
+<section class="dog-adoption-page">
+    <div class="dog-adoption-intro">
+      <h1 class="dog-adoption-title">Dog & Puppy Adoption</h1>
+      <div class="dog-adoption-description">
+        <p>
+          Looking to welcome a new dog or puppy into your family? We can help you find the perfect furry friend to match your lifestyle.
+        </p>
+      </div>
+    </div>
+  
+    <div class="dog-slider-wrapper">
+      <div class="dog-slider-header">
+        <span class="view-all" (click)="toggleView()">
+          {{ viewAll ? 'Show Slider' : 'View All' }}
+        </span>
+      </div>
+  
+      <div *ngIf="viewAll; else sliderTemplate">
+        <div class="dog-grid">
+          <div *ngFor="let dog of dogs" class="dog-card">
+            <img [src]="dog.image" [alt]="dog.name" class="dog-card-image" />
+            <h3 class="dog-card-name">{{ dog.name }}</h3>
+            <p class="dog-card-breed">{{ dog.breed }}</p>
+            <p class="dog-card-age">Age: {{ dog.age }} years</p>
+          </div>
+        </div>
+      </div>
+  
+      <ng-template #sliderTemplate>
+        <div class="slider-container">
+          <!-- Slider setup can be handled with a third-party Angular carousel library -->
+          <div class="custom-arrow left-arrow" (click)="sliderRef.slickPrev()">&#9664;</div>
+          <!-- Implement the slider with an Angular carousel library (e.g., ngx-slick-carousel) -->
+          <div *ngFor="let dog of dogs" class="dog-card">
+            <img [src]="dog.image" [alt]="dog.name" class="dog-card-image" />
+            <h3 class="dog-card-name">{{ dog.name }}</h3>
+            <p class="dog-card-breed">{{ dog.breed }}</p>
+            <p class="dog-card-age">Age: {{ dog.age }} years</p>
+          </div>
+          <div class="custom-arrow right-arrow" (click)="sliderRef.slickNext()">&#9654;</div>
+        </div>
+      </ng-template>
+    </div>
+  
+    <div class="new-dog-section">
+      <h2 class="new-dog-title">For Your New Dog</h2>
+      <p class="new-dog-description">
+        Bringing a new dog home can be an exciting experience! Here are some essential tips to help you take care of your new furry friend:
+      </p>
+      <div class="new-dog-tips">
+        <div class="tip-card">
+          <img src="assets/dogHouse.jpg" alt="Safe Space" />
+          <h3>Create a Safe Space</h3>
+          <p>Set up a quiet and cozy area where your dog can feel secure during their first few days.</p>
+        </div>
+        <div class="tip-card">
+          <img src="assets/dogFood.jpeg" alt="Healthy Food" />
+          <h3>Provide Healthy Food</h3>
+          <p>Ensure your dog has access to nutritious food and clean water to keep them healthy and happy.</p>
+        </div>
+        <div class="tip-card">
+          <img src="assets/dogPlay.jpg" alt="Playtime" />
+          <h3>Play and Interaction</h3>
+          <p>Spend time playing and interacting with your dog to help them adjust and bond with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -34,14 +34,14 @@ public class AdopterController {
         return adopterService.createAdopter(adopters);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update")
     public ResponseEntity<Adopter> updateAdopter(@PathVariable ObjectId id, @RequestBody String adopters) {
         adopterService.updateAdopterAddress(id, adopters);
         Optional<Adopter> adopter = adopterService.getAdopterById(id);
         return adopter.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteAdopter(@PathVariable ObjectId id) {
         adopterService.deleteAdopter(id);
         return ResponseEntity.noContent().build();

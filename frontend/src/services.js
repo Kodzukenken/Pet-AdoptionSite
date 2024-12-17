@@ -127,6 +127,16 @@ const createAdoptionRequest = async (data) => {
   }
 };
 
+const fetchAllPets = async (data) =>{
+  try{
+    const response = await axiosInstance.get(API_GET_ALL_PETS, data);
+    return response.data;
+  } catch (error){
+    console.error("Error fetching pets:", error);
+    throw error;
+  }
+}
+
 
 export {
   login,

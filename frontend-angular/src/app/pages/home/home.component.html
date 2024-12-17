@@ -1,1 +1,75 @@
-<p>home works!</p>
+<!-- Hero Section -->
+<section class="home">
+    <div class="home__container">
+      <div class="home__content">
+        <h1 class="home__title">Pawsitively</h1>
+        <h1 class="home__title2">Pet Adoption</h1>
+        <p class="home__description">We believe that every pet deserves a loving home.</p>
+        <a routerLink="/search">
+          <button class="home__button">Adopt a Pet</button>
+        </a>
+      </div>
+      <div class="home__images">
+        <img src="assets/bg.png" alt="Background" class="home__image background" />
+      </div>
+    </div>
+  
+    <!-- Video Section -->
+    <div class="home__video-container">
+      <video class="home__video" controls autoplay muted loop>
+        <source src="assets/homevideo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  
+    <!-- Adoption Cards Section -->
+    <div class="adoption__section">
+      <h2 class="card__title">Looking for a pet?</h2>
+      <div class="adoption__cards">
+        <div class="adoption__card">
+          <div class="adoption__icon">🏠</div>
+          <h3>Our Shelters</h3>
+          <p>Check out our trusted shelters.</p>
+        </div>
+        <div class="adoption__card">
+          <div class="adoption__icon">🐱</div>
+          <h3>Cat Adoption</h3>
+          <a routerLink="/cat-adoption"><button>Adopt a Cat</button></a>
+        </div>
+        <div class="adoption__card">
+          <div class="adoption__icon">🐶</div>
+          <h3>Dog Adoption</h3>
+          <a routerLink="/dog-adoption"><button>Adopt a Dog</button></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Featured Pets Section -->
+    <div class="featured-pets_section">
+      <h2>Featured Pets</h2>
+      <div class="featured-pets_carousel">
+        <button (click)="prevPetSlide()">&#9664;</button>
+        <div class="carousel_track">
+          <div *ngFor="let pet of mockPets.slice(currentPetSlide, currentPetSlide + 5)" class="featured-pet_card">
+            <img [src]="pet.image" [alt]="pet.name" class="featured-pet_image" />
+            <h3>{{ pet.name }}</h3>
+            <p>Age: {{ pet.age }} years</p>
+            <button>Adopt {{ pet.name }}</button>
+          </div>
+        </div>
+        <button (click)="nextPetSlide()">&#9654;</button>
+      </div>
+    </div>
+  
+    <!-- About Us Section -->
+    <div class="about_container">
+      <h1>About Us</h1>
+      <p>At Pawsitive, we believe every pet deserves a loving home.</p>
+      <div class="about_slider">
+        <button (click)="prevSlide()">&#9664;</button>
+        <img [src]="sliderImages[currentSlide]" alt="About Us" />
+        <button (click)="nextSlide()">&#9654;</button>
+      </div>
+    </div>
+  </section>
+  

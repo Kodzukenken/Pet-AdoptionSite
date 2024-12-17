@@ -40,7 +40,6 @@ const API_GET_ALL_SHELTERS = `${API_URL}${GET_ALL_SHELTERS}`;
 
 const PETS_API = `${API_URL}/pets`;
 const CATEG_API = `${API_URL}/categories`;
-const SHELTER_API = `${API_URL}/shelters`;
 const ADOPTER_API = `${API_URL}/adopters`;
 const ADOPTREQ_API = `${API_URL}/adoption-requests`;
 
@@ -54,10 +53,12 @@ const GET_ALL_ADOPTERS = "/adopters";
 
 //Pets
 const POST_NEW_PET = "/pets";
+const UPDATE_PET = "/update";
+const REMOVE_PET = "/remove";
 
-//Shelter
-const POST_NEW_SHELTER = "/shelters";
-
+const API_POST_NEW_PET = `${API_URL}${POST_NEW_PET}`;
+const API_UPDATE_PET = `${API_URL}${UPDATE_PET}`;
+const API_REMOVE_PET = `${API_URL}${REMOVE_PET}`;
 
 export {
   API_URL,
@@ -71,8 +72,7 @@ export {
   API_POST_NEW_ADOPTION_REQUESTS,
   API_GET_ALL_CATEGORIES,
   API_GET_ALL_PETS,
-  API_GET_ALL_SHELTERS,
-
+  API_POST_NEW_PET,
 }
 // export const API_LOGIN = "https://jsonplaceholder.typicode.com/posts";
 // export const API_SIGNUP = "https://jsonplaceholder.typicode.com/posts";
