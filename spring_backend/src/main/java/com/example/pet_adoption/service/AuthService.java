@@ -7,7 +7,7 @@ import com.example.pet_adoption.model.Adopter;
 import com.example.pet_adoption.repository.AdopterRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.pet_adoption.security.JwtUtil;
 
@@ -16,9 +16,6 @@ public class AuthService {
     
     @Autowired
     private AdopterRepository adopterRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private JwtUtil tokenProvider;
@@ -30,7 +27,7 @@ public class AuthService {
             .orElseThrow(() -> new RuntimeException("Invalid email or password"));
     
         // Verify password
-        if (!passwordEncoder.matches(loginRequest.getPassword(), adopter.getPassword())) {
+        if (!loginRequest.getPassword().matches(adopter.getPassword())) {
             throw new RuntimeException("Invalid email or password");
         }
     
@@ -52,7 +49,7 @@ public class AuthService {
         }
 
         // Encrypt password
-        String encryptPassword = passwordEncoder.encode(request.getPassword());
+        // String encryptPassword = passwordEncoder.encode(request.getPassword());
         String defaultRole = "USER";
 
         // Create new Adopter 
@@ -61,7 +58,7 @@ public class AuthService {
             request.getEmail(), 
             request.getName(), 
             request.getAddress(), 
-            encryptPassword, 
+            request.getPassword(), 
             defaultRole,
             request.getDob()
         );
@@ -75,10 +72,10 @@ public class AuthService {
             .orElseThrow(() -> new RuntimeException("Email not found"));
 
         // Encrypt new password
-        String encryptedPassword = passwordEncoder.encode(resetPasswordRequest.getNewPassword());
+        // String encryptedPassword = passwordEncoder.encode(resetPasswordRequest.getNewPassword());
 
         // Update password in the database
-        adopter.setPassword(encryptedPassword);
+        adopter.setPassword(resetPasswordRequest.getNewPassword());
         adopterRepository.save(adopter);
 
         return true;  // Return true to indicate password was updated successfully

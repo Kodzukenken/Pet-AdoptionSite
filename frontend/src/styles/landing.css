@@ -1,3 +1,23 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #444;
+} */
+
 .create-account-wrapper {
     display: flex;
     justify-content: center;
@@ -24,70 +44,6 @@
     color: #0075ff;
     margin-bottom: 10px;
     font-weight: bold;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: #333333;
-    margin-bottom: 20px;
-}
-
-form input {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
-    background-color: #f9f9f9;
-    font-family: 'Poppins', sans-serif;
-}
-
-form input:focus {
-    border-color: #9d6aff;
-    outline: none;
-    background-color: #ffffff;
-}
-
-.submit-button {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #0075ff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-}
-
-.submit-button:hover {
-    background-color: #6a0dad;
-    transform: scale(1.02);
-    box-shadow: 0px 4px 15px rgba(157, 106, 255, 0.4);
-}
-
-.submit-button:active {
-    background-color: #6a0dad;
-}
-
-.login-link {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #666666;
-}
-
-.login-link a {
-    color: #6a0dad;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
 }
 
 .login-wrapper {
@@ -118,25 +74,121 @@ form input:focus {
     font-weight: bold;
 }
 
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-align: left;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 2rem auto;
 }
 
+input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
 
-@media (max-width: 768px) {
-    .create-account-card {
-        padding: 20px;
+input:focus {
+    border-color: #007bff;
+}
+
+button {
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:disabled {
+    background-color: #a8c3e8;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+
+p:hover {
+    text-decoration: underline;
+    color: #007bff;
+}
+
+.error, .error-message {
+    color: #d9534f;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Wrapper styles */
+.login-wrapper, 
+.create-account-wrapper,
+.create-account-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    max-width: 500px;
+    margin: 3rem auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-account-card {
+    width: 100%;
+    padding: 2.5rem 1.5rem;
+}
+
+.submit-button {
+    margin-top: 1rem;
+}
+
+/* Links */
+.signup-link, .login-link {
+    color: #007bff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.signup-link:hover, .login-link:hover {
+    text-decoration: underline;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 1rem;
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 1.5rem;
     }
-
-    .create-account-card h1 {
-        font-size: 22px;
-    }
-
-    form input,
-    .submit-button {
-        font-size: 14px;
+    .create-account-wrapper, 
+    .login-wrapper {
+        padding: 1.5rem;
     }
 }

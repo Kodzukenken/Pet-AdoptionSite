@@ -31,7 +31,6 @@ public class AuthController {
         @RequestParam("address") String address,
         @RequestParam("password") String password,
         @RequestParam("age") int age
-        // @RequestParam("file") MultipartFile file
         ){
         
         SignupRequest request = new SignupRequest();

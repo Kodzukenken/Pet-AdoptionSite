@@ -6,18 +6,16 @@ public class SignupRequest {
   private String name;
   private int dob;
   private String address;
-  private String phoneNum;
   
 public SignupRequest() {
 }
 
-public SignupRequest(String email, String password, String name, int dob, String address, String phoneNum) {
+public SignupRequest(String email, String password, String name, int dob, String address) {
     this.email = email;
     this.password = password;
     this.name = name;
     this.dob = dob;
     this.address = address;
-    this.phoneNum = phoneNum;
 }
 
 public String getEmail() {
@@ -49,12 +47,6 @@ public String getAddress() {
 }
 public void setAddress(String address) {
     this.address = address;
-}
-public String getPhoneNum() {
-    return phoneNum;
-}
-public void setPhoneNum(String phoneNum) {
-    this.phoneNum = phoneNum;
 }
   
 }

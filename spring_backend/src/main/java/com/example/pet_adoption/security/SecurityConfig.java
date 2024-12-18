@@ -26,18 +26,18 @@ public class SecurityConfig{
     //     this.jwtUtil = jwtUtil;
     // }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    // @Bean
+    // public PasswordEncoder passwordEncoder() {
+    //     return new BCryptPasswordEncoder();
+    // }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/login", "/api/auth/signup").permitAll()
-                .anyRequest().authenticated() // Require auth for other endpoints
-            )
+            // .authorizeHttpRequests(auth -> auth
+            //     .requestMatchers("/api/auth/login", "/api/auth/signup").permitAll()
+            //     .anyRequest().authenticated() // Require auth for other endpoints
+            // )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
         return http.build();

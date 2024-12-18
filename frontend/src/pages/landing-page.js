@@ -284,7 +284,7 @@ const renderForm = () => {
                         required
                     />
                     {errorMessage && <p className="error">{errorMessage}</p>}
-                    <button type="submit" disabled={isLoading}>{isLoading ? "Sending..." : "Send Reset Email"}</button>
+                    <button type="submit" disabled={isLoading}>{isLoading ? "Confirming..." : "Confirm email"}</button>
                     <p onClick={() => setMode("login")}>Back to Login</p>
                 </form>
             );
